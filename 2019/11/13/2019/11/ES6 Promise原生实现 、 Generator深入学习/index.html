@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="11-13 ES6 Promise原生实现 、 Generator深入学习了解 Promise 的局限性。  原生实现 、其一些细节。  Generator 自执行函数的实现。">
+<meta name="keywords" content="学习笔记和总结,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 Promise原生实现 、 Generator深入学习">
+<meta property="og:url" content="http://yoursite.com/2019/11/13/2019/11/ES6 Promise原生实现 、 Generator深入学习/index.html">
+<meta property="og:site_name" content="淡退">
+<meta property="og:description" content="11-13 ES6 Promise原生实现 、 Generator深入学习了解 Promise 的局限性。  原生实现 、其一些细节。  Generator 自执行函数的实现。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/0C/02/ChMkJ13V9q6IOSp_AAPNPlvQOwwAAvV_QJYgfoAA81W947.jpg">
+<meta property="og:updated_time" content="2019-11-24T09:30:02.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6 Promise原生实现 、 Generator深入学习">
+<meta name="twitter:description" content="11-13 ES6 Promise原生实现 、 Generator深入学习了解 Promise 的局限性。  原生实现 、其一些细节。  Generator 自执行函数的实现。">
+<meta name="twitter:image" content="https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/0C/02/ChMkJ13V9q6IOSp_AAPNPlvQOwwAAvV_QJYgfoAA81W947.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/11/13/2019/11/ES6 Promise原生实现 、 Generator深入学习/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>ES6 Promise原生实现 、 Generator深入学习 | 淡退</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">淡退</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">---脂肪肝患者</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/2019/11/ES6 Promise原生实现 、 Generator深入学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">ES6 Promise原生实现 、 Generator深入学习
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-13 23:10:17" itemprop="dateCreated datePublished" datetime="2019-11-13T23:10:17+08:00">2019-11-13</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-24 17:30:02" itemprop="dateModified" datetime="2019-11-24T17:30:02+08:00">2019-11-24</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/0C/02/ChMkJ13V9q6IOSp_AAPNPlvQOwwAAvV_QJYgfoAA81W947.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+        <h2 id="11-13-ES6-Promise原生实现-、-Generator深入学习"><a href="#11-13-ES6-Promise原生实现-、-Generator深入学习" class="headerlink" title="11-13 ES6 Promise原生实现 、 Generator深入学习"></a>11-13 ES6 Promise原生实现 、 Generator深入学习</h2><h3 id="了解"><a href="#了解" class="headerlink" title="了解"></a>了解</h3><ol>
+<li><p>Promise 的局限性。</p>
+</li>
+<li><p>原生实现 、其一些细节。</p>
+</li>
+<li><p>Generator 自执行函数的实现。</p>
+<a id="more"></a>
+
+</li>
+</ol>
+<p>## </p>
+<h3 id="ES6-Promise"><a href="#ES6-Promise" class="headerlink" title="ES6 Promise"></a>ES6 Promise</h3><h4 id="Promise-的局限性"><a href="#Promise-的局限性" class="headerlink" title="Promise 的局限性"></a>Promise 的局限性</h4><ol>
+<li><strong>错误被吃掉</strong></li>
+</ol>
+<p>首先我们要理解，什么是错误被吃掉，是指错误信息不被打印吗？</p>
+<p>并不是，举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">233333</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在这种情况下，因为 <code>throw error</code>的缘故，代码被阻断执行，并不会打印 233333，再举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="literal">null</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">233333</span>);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码依然会被阻断执行，这是因为如果通过无效的方式使用 <code>Promise</code>，并且出现了一个错误阻碍了正常 <code>Promise</code> 的构造，结果会得到一个立刻跑出的异常，而不是一个被拒绝的 <code>Promise</code>。</p>
+<p>然而再举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">2333333</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这次会正常的打印 <code>233333</code>，说明 <code>Promise</code> 内部的错误不会影响到 <code>Promise</code> 外部的代码，而这种情况我们就通常称为 “吃掉错误”。</p>
+<p>其实这并不是 Promise 独有的局限性，try..catch 也是这样，同样会捕获一个异常并简单的吃掉错误。</p>
+<p>而正是因为错误被吃掉，Promise 链中的错误很容易被忽略掉，这也是为什么会一般推荐在 Promise 链的最后添加一个 catch 函数，因为对于一个没有错误处理函数的 Promise 链，任何错误都会在链中被传播下去，直到你注册了错误处理函数。</p>
+<ol start="2">
+<li><strong>单一值</strong></li>
+</ol>
+<p>Promise 只能有一个完成值或一个拒绝原因，然而在真实使用的时候，往往需要传递多个值，一般做法都是构造一个对象或数组，然后再传递，then 中获得这个值后，又会进行取值赋值的操作，每次封装和解封都无疑让代码变得笨重。</p>
+<p>说真的，并没有什么好的方法，建议是使用 ES6 的解构赋值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([<span class="built_in">Promise</span>.resolve(<span class="number">1</span>), <span class="built_in">Promise</span>.resolve(<span class="number">2</span>)])</span><br><span class="line">.then(<span class="function">(<span class="params">[x, y]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>无法取消</strong></li>
+</ol>
+<p>Promise 一旦新建它就会立即执行，无法中途取消。</p>
+<ol start="4">
+<li><strong>无法得知 pending 状态</strong></li>
+</ol>
+<p>当处于 pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
+<h3 id="原生实现-、其一些细节"><a href="#原生实现-、其一些细节" class="headerlink" title="原生实现 、其一些细节"></a>原生实现 、其一些细节</h3><ol>
+<li><code>Promise</code> 构造器中必须传入函数，否则会抛出错误。</li>
+</ol>
+<p>2.<code>Promise.prototype</code>上的 <code>catch(onrejected)</code>方法是 <code>then(null,onrejected)</code> 的别名,并且会处理链之前的任何的<code>reject</code>。</p>
+<ol start="3">
+<li><p><code>Promise.prototype</code> 上的 <code>then和 catch</code> 方法总会返回一个全新的 <code>Promise</code> 对象。</p>
+</li>
+<li><p>如果传入构造器的函数中抛出了错误,该 <code>promise</code> 对象的<code>[[PromiseStatus]]</code>会赋值为 <code>rejected</code>，并且<code>[[PromiseValue]]</code>赋值为 <code>Error</code> 对象。</p>
+</li>
+<li><p><code>then</code>中的回调如果抛出错误，返回的<code>promise</code> 对象的<code>[[PromiseStatus]]</code>会赋值为 <code>rejected</code>，并且 <code>[PromiseValue]]</code>赋值为 <code>Error</code> 对象。</p>
+</li>
+<li><p>t<code>hen</code> 中的回调返回值会影响 <code>then</code> 返回的 <code>promise</code> 对象。</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现功能： 自动执行 Generator 返回的 Promise 对象， </span></span><br><span class="line"><span class="comment">//并且将 Promise 的结果在传入到 Generator 进行下一次运行。</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(executor)&#123;</span><br><span class="line">        <span class="keyword">const</span> self = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">this</span>.status = <span class="string">'pending'</span>; <span class="comment">//等待态</span></span><br><span class="line">        <span class="keyword">this</span>.value  = <span class="literal">undefined</span>; <span class="comment">// 表示当前成功的值</span></span><br><span class="line">        <span class="keyword">this</span>.reason = <span class="literal">undefined</span>; <span class="comment">// 表示是失败的值</span></span><br><span class="line">        <span class="keyword">const</span> resolve=<span class="function">(<span class="params">value</span>)=&gt;</span>&#123; <span class="comment">// 成功的方法</span></span><br><span class="line">            <span class="keyword">if</span>(self.status === <span class="string">'pending'</span>)&#123;</span><br><span class="line">                self.status = <span class="string">'resolved'</span>;</span><br><span class="line">                self.value = value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> reject = <span class="function">(<span class="params">reason</span>)=&gt;</span>&#123; <span class="comment">//失败的方法</span></span><br><span class="line">            <span class="keyword">if</span>(self.status === <span class="string">'pending'</span>)&#123;</span><br><span class="line">                self.status = <span class="string">'rejected'</span>;</span><br><span class="line">                self.reason = reason;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        executor(resolve,reject);</span><br><span class="line">    &#125;</span><br><span class="line">     then(onFufiled,onRejected) &#123;</span><br><span class="line">        <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">        timer = setInterval(<span class="function"><span class="params">()</span>=&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.status !== <span class="string">'pending'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="string">'resolved'</span>) &#123;</span><br><span class="line">                    onFufiled(<span class="keyword">this</span>.value);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="string">'rejected'</span>) &#123;</span><br><span class="line">                    onRejected(<span class="keyword">this</span>.reason);</span><br><span class="line">                &#125;</span><br><span class="line">                clearInterval(timer);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timeout</span>(<span class="params">ms</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Promise2(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(resolve, ms);</span><br><span class="line">       <span class="comment">/* console.log(111);</span></span><br><span class="line"><span class="comment">        resolve();*/</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">timeout(<span class="number">3000</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'我3秒后被输出'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：</p>
+<p><a href="https://github.com/mqyqingfeng/Blog/issues/98" target="_blank" rel="noopener">ES6 系列之我们来聊聊 Promise</a></p>
+<p><a href="https://segmentfault.com/a/1190000011241512" target="_blank" rel="noopener">解析 Promise 原理，实现一个Promise</a></p>
+<p><a href="https://www.jianshu.com/p/b4f0425b22a1" target="_blank" rel="noopener">Promise原理与实现</a></p>
+<p><a href="https://juejin.im/post/5b66f2935188251afc259f45" target="_blank" rel="noopener">扒一扒PROMISE的原理，大家不要怕！</a></p>
+<h2 id="Generator-自执行函数的实现"><a href="#Generator-自执行函数的实现" class="headerlink" title="Generator 自执行函数的实现"></a>Generator 自执行函数的实现</h2><p>通过下面的代码 了解next、yield 是功能是怎么样的，代码的执行过程是如何的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> *(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="keyword">yield</span>(x+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">var</span> z = <span class="keyword">yield</span>(x+y);</span><br><span class="line">  <span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = f.next();   <span class="comment">// 2</span></span><br><span class="line"><span class="keyword">var</span> b = f.next(<span class="number">2</span>);  <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">var</span> c = f.next(<span class="number">4</span>);  <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次执行暂停于<code>yield(x+1)</code>,并返回于<code>x+1</code>等于2</p>
+<p>第二次执行，<code>next()</code>的参数<code>2</code>,就代替了上面的<code>yield(x+1)</code>，所以<code>y=2</code>,那么暂停于第二个<code>yield yield(x+y)</code>并返回<code>x+y</code>等于<code>3</code><br>同理,第三次执行<code>z=4，return z</code>等于<code>4</code></p>
+<h3 id="单个异步任务"><a href="#单个异步任务" class="headerlink" title="单个异步任务"></a>单个异步任务</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fetch = <span class="built_in">require</span>(<span class="string">'node-fetch'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">'https://api.github.com/users/github'</span>;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">yield</span> fetch(url);</span><br><span class="line">    <span class="built_in">console</span>.log(result.bio);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了获得最终的执行结果，需要这样做：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> g = gen();</span><br><span class="line"><span class="keyword">var</span> result = g.next();</span><br><span class="line"></span><br><span class="line">result.value.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> data.json();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    g.next(data);<span class="comment">//这里传入的data 相当于 result</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="多个异步任务"><a href="#多个异步任务" class="headerlink" title="多个异步任务"></a>多个异步任务</h3><p>只调用了一个接口可以采用上面的那种方式，当我们要调用了多个接口，使用了多个 yield，如果还是采用第一种方式，则会不断的嵌套then. 显而易见的这是不可取的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fetch = <span class="built_in">require</span>(<span class="string">'node-fetch'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r1 = <span class="keyword">yield</span> fetch(<span class="string">'https://api.github.com/users/github'</span>);</span><br><span class="line">    <span class="keyword">var</span> r2 = <span class="keyword">yield</span> fetch(<span class="string">'https://api.github.com/users/github/followers'</span>);</span><br><span class="line">    <span class="keyword">var</span> r3 = <span class="keyword">yield</span> fetch(<span class="string">'https://api.github.com/users/github/repos'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log([r1.bio, r2[<span class="number">0</span>].login, r3[<span class="number">0</span>].full_name].join(<span class="string">'\n'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按照第一种写法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> g = gen();</span><br><span class="line"><span class="keyword">var</span> result1 = g.next();</span><br><span class="line"></span><br><span class="line">result1.value.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> data.json();</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> g.next(data).value;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> data.json();</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> g.next(data).value</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> data.json();</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    g.next(data)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>显然这不是我们想要的： 可以通过递归的方式来减少then的嵌套</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">gen</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> g = gen();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> result = g.next(data);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (result.done) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        result.value.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> data.json();</span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">            next(data);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    next();</span><br><span class="line">&#125;</span><br><span class="line">run(gen);</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：<a href="https://github.com/mqyqingfeng/Blog/issues/99" target="_blank" rel="noopener">ES6 系列之 Generator 的自动执行</a></p>
+<h3 id="简单原生实现版本co"><a href="#简单原生实现版本co" class="headerlink" title="简单原生实现版本co"></a>简单原生实现版本co</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现功能： 自动执行 Generator 返回的 Promise 对象， 并且将 Promise 的结果在传入到 Generator 进行下一次运行。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autoRunGen</span>(<span class="params">gen</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = gen();</span><br><span class="line">    result.next().value.then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> result.next(data).value;</span><br><span class="line">    &#125;).then(<span class="function">(<span class="params">data</span>)=&gt;</span> &#123;</span><br><span class="line">        result.next(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*参考文章 利用递归*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">co</span>(<span class="params">gen</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = gen();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> result2 = result.next(data);</span><br><span class="line">        <span class="keyword">if</span>(result2.done) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            result2.value.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">                next(data)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fetchStepGen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">'https://api.github.com/users/github'</span>;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">yield</span> fetch(url);</span><br><span class="line">    <span class="keyword">var</span> jsonData = <span class="keyword">yield</span> result.json();</span><br><span class="line">    <span class="built_in">console</span>.log(jsonData.bio); <span class="comment">// "How people build software."</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">autoRunGen(fetchStepGen);</span><br><span class="line">co(fetchStepGen);</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/学习笔记和总结/" rel="tag"># 学习笔记和总结</a>
+            
+              <a href="/tags/js/" rel="tag"># js</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/05/2019/9/vue基础学习笔记/" rel="next" title="vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived)">
+                  <i class="fa fa-chevron-left"></i> vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/14/2019/11/React context基本用法总结/" rel="prev" title="React context基本用法总结">
+                  React context基本用法总结 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658"
+      alt="淡退">
+  <p class="site-author-name" itemprop="name">淡退</p>
+  <div class="site-description motion-element" itemprop="description">欢迎你的到来！</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-13-ES6-Promise原生实现-、-Generator深入学习"><span class="nav-number">1.</span> <span class="nav-text">11-13 ES6 Promise原生实现 、 Generator深入学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解"><span class="nav-number">1.1.</span> <span class="nav-text">了解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-Promise"><span class="nav-number">1.2.</span> <span class="nav-text">ES6 Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-的局限性"><span class="nav-number">1.2.1.</span> <span class="nav-text">Promise 的局限性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生实现-、其一些细节"><span class="nav-number">1.3.</span> <span class="nav-text">原生实现 、其一些细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generator-自执行函数的实现"><span class="nav-number">2.</span> <span class="nav-text">Generator 自执行函数的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单个异步任务"><span class="nav-number">2.1.</span> <span class="nav-text">单个异步任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个异步任务"><span class="nav-number">2.2.</span> <span class="nav-text">多个异步任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单原生实现版本co"><span class="nav-number">2.3.</span> <span class="nav-text">简单原生实现版本co</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <!--<i class="fa fa-user"></i>-->
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">淡退</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+-->
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>

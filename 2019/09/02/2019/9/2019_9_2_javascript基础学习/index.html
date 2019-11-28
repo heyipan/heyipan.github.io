@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="7-04 学习总结和笔记了解 了解学习计划。  与老师探讨学习策略，包括学习内容以及学习方法。  探讨以往培训生学习经验，总结新的学习方案。">
+<meta name="keywords" content="学习笔记和总结,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript基础学习">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/2019/9/2019_9_2_javascript基础学习/index.html">
+<meta property="og:site_name" content="淡退">
+<meta property="og:description" content="7-04 学习总结和笔记了解 了解学习计划。  与老师探讨学习策略，包括学习内容以及学习方法。  探讨以往培训生学习经验，总结新的学习方案。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s1280x1024c5/g2/M00/0F/07/ChMlWl1nOc2IbvfQAAZNLsuXWlkAAM3EQN7GXAABk1G366.jpg">
+<meta property="og:updated_time" content="2019-11-21T09:46:30.433Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript基础学习">
+<meta name="twitter:description" content="7-04 学习总结和笔记了解 了解学习计划。  与老师探讨学习策略，包括学习内容以及学习方法。  探讨以往培训生学习经验，总结新的学习方案。">
+<meta name="twitter:image" content="https://desk-fd.zol-img.com.cn/t_s1280x1024c5/g2/M00/0F/07/ChMlWl1nOc2IbvfQAAZNLsuXWlkAAM3EQN7GXAABk1G366.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/09/02/2019/9/2019_9_2_javascript基础学习/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>javascript基础学习 | 淡退</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">淡退</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">---脂肪肝患者</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/02/2019/9/2019_9_2_javascript基础学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">javascript基础学习
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-02 23:10:17" itemprop="dateCreated datePublished" datetime="2019-09-02T23:10:17+08:00">2019-09-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 17:46:30" itemprop="dateModified" datetime="2019-11-21T17:46:30+08:00">2019-11-21</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1280x1024c5/g2/M00/0F/07/ChMlWl1nOc2IbvfQAAZNLsuXWlkAAM3EQN7GXAABk1G366.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+        <h2 id="7-04-学习总结和笔记"><a href="#7-04-学习总结和笔记" class="headerlink" title="7-04 学习总结和笔记"></a>7-04 学习总结和笔记</h2><h3 id="了解"><a href="#了解" class="headerlink" title="了解"></a>了解</h3><ol>
+<li><p>了解学习计划。</p>
+</li>
+<li><p>与老师探讨学习策略，包括学习内容以及学习方法。</p>
+</li>
+<li><p>探讨以往培训生学习经验，总结新的学习方案。</p>
+<a id="more"></a>
+
+
+</li>
+</ol>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><h4 id="chrome开发工具的使用"><a href="#chrome开发工具的使用" class="headerlink" title="chrome开发工具的使用"></a>chrome开发工具的使用</h4><ol>
+<li><p>安装google访问助手插件，建议多用google查找相关问题和资料。 了解翻墙的原理，简单的来讲就是通过访问香港、澳门、台湾的待在的服务器，然后该服务区在通过再去访问国外的服务器，从而实现翻墙操作。个人感觉于服务器代理的原理差不多。</p>
+</li>
+<li><p>elements调样式，Console拿到实例，Network看请求头URL请求方式响应码，请求参数，Sources定位源码，Performance优化，显示渲染时间，Application缓存。</p>
+</li>
+</ol>
+<blockquote>
+<p>注：请求头中常用字段：Authorization，请求体：参数。</p>
+</blockquote>
+<h3 id="js基础学习"><a href="#js基础学习" class="headerlink" title="js基础学习"></a>js基础学习</h3><p>发展历史，基础知识，常见字符串、数组方法，调试技巧</p>
+<p>上下文、闭包、this、apply、call</p>
+<p>原型、原型链继承、项目中的应用</p>
+<p>结合ajax、上传demo讲解、同步异步、post表单类型等</p>
+<h4 id="变量提升和作用域链"><a href="#变量提升和作用域链" class="headerlink" title="变量提升和作用域链"></a>变量提升和作用域链</h4><ol>
+<li>函数作用域和声明提前：JavaScript 的函数作用域是指在函数内声明的所有变量在函数体内始终是可见的，这意味着变量在声明之前甚至已经可用。JavaScript 的这个特性被非正式地称为声明提前（hoisting），即 JavaScript 函数里声明的所有变量（但不涉及赋值）都被提前至函数体的顶部</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"global"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(scope);  <span class="comment">// 输出"undefined"，而不是"global"</span></span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">"local"</span>; <span class="comment">// 变量在这里赋初始值，但变量本身在函数体内任何地方均是有定义的</span></span><br><span class="line">    <span class="built_in">console</span>.log(scope);  <span class="comment">// 输出"local"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scope;          <span class="comment">// 在函数顶部声明了局部变量</span></span><br><span class="line">    <span class="built_in">console</span>.log(scope); <span class="comment">// 变量存在，但其值是"undefined"</span></span><br><span class="line">    scope = <span class="string">"local"</span>;    <span class="comment">// 这里将其初始化并赋值</span></span><br><span class="line">    <span class="built_in">console</span>.log(scope); <span class="comment">// 这里它具有了我们所期望的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>作用域链：当代码在一个环境中执行时，会创建变量对象的一个作用域链，作用域链的前端，始终都是当前执行的代码所在环境的变量对象。作用域链中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> color = <span class="string">"blue"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> anotherColor = <span class="string">"red"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">swapColors</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> tempColor = anotherColor;</span><br><span class="line">            anotherColor = color;</span><br><span class="line">            color = tempColor;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 这里可以访问color、anotherColor和tempColor</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里可以访问color和anotherColor，但不能访问tempColor</span></span><br><span class="line">    swapColors();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h4><p>静态作用域与动态作用域</p>
+<pre><code>词法作用域：词法作用域是指在词法分析阶段就确定了，不会改变。变量的作用域是在定义时决定而不是执行
+时决定，也就是说词法作用域取决于源码，通过静态分析就能确定，因此词法作用域也叫做静态作用域。
+
+动态作用域：动态作用域是在运行时根据程序的流程信息来动态确定的，而不是在写代码时进行静态确定的。 
+动态作用域并不关心函数和作用域是如何声明以及在何处声明的，只关心它们在何处调用。参考this</code></pre><p>JavaScript的词法作用域是静态作用域</p>
+<p>如果一个文档流中包含多个script代码段（用script标签分隔的js代码或引入的js文件），它们的运行顺序是：</p>
+<ol>
+<li><p>读入第一个代码段（js执行引擎并非一行一行地分析程序，而是一段一段地分析执行的）</p>
+</li>
+<li><p>做词法分析，有错则报语法错误（比如括号不匹配等），并跳转到步骤5</p>
+</li>
+<li><p>对var变量和function定义做“预解析“（永远不会报错的，因为只解析正确的声明）</p>
+</li>
+<li><p>执行代码段，有错则报错（比如变量未定义）</p>
+</li>
+<li><p>如果还有下一个代码段，则读入下一个代码段，重复步骤2</p>
+</li>
+<li><p>完成</p>
+</li>
+</ol>
+<p>理解js词法作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> value = <span class="number">2</span>;</span><br><span class="line">foo();</span><br><span class="line">&#125;</span><br><span class="line">bar();<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<p>假设JavaScript采用静态作用域，分析执行过程：</p>
+<p>  执行 foo 函数，先从 foo 函数局部作用域中查找是否有变量 value，如果没有，就从全局作用域中查找变量value的值，所以结果会打印 1。</p>
+<p>假设JavaScript采用动态作用域，让我们分析下执行过程：</p>
+<p>  执行 foo 函数，依然是从 foo 函数内部查找是否有局部变量 value。如果没有，就从调用函数的作用域，也就是 bar 函数内部查找 value 变量，所以结果会打印 2。</p>
+<p>JavaScript采用的是静态作用域，所以这个例子的结果是 1。</p>
+<p>参考链接 <a href="https://blog.csdn.net/qq_27626333/article/details/78463565" target="_blank" rel="noopener">JavaScript作用域、上下文、执行期上下文、作用域链、闭包</a></p>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><ol>
+<li>每一个对象都有<strong>proto</strong>属性</li>
+<li>只有函数对象有prototyp属性</li>
+</ol>
+<p><img src="http://image.bubuko.com/info/201601/20180110174710584431.jpg" alt></p>
+<h4 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h4><p>slice(start,end)</p>
+<p>subString(start,end) start大于end；开会自动转化</p>
+<p>substr(start,end)</p>
+<p>concat（）返回字符串，链接字符串</p>
+<p>split（）</p>
+<p>replace（）去掉空格</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/学习笔记和总结/" rel="tag"># 学习笔记和总结</a>
+            
+              <a href="/tags/js/" rel="tag"># js</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/01/2019/9/2019_9_1_BlogList博客列表/" rel="next" title="BlogList博客列表">
+                  <i class="fa fa-chevron-left"></i> BlogList博客列表
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/05/2019/9/2019_9_8_git 基础学习/" rel="prev" title="git 基础学习">
+                  git 基础学习 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658"
+      alt="淡退">
+  <p class="site-author-name" itemprop="name">淡退</p>
+  <div class="site-description motion-element" itemprop="description">欢迎你的到来！</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-04-学习总结和笔记"><span class="nav-number">1.</span> <span class="nav-text">7-04 学习总结和笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解"><span class="nav-number">1.1.</span> <span class="nav-text">了解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">1.2.</span> <span class="nav-text">调试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chrome开发工具的使用"><span class="nav-number">1.2.1.</span> <span class="nav-text">chrome开发工具的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js基础学习"><span class="nav-number">1.3.</span> <span class="nav-text">js基础学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量提升和作用域链"><span class="nav-number">1.3.1.</span> <span class="nav-text">变量提升和作用域链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词法作用域"><span class="nav-number">1.3.2.</span> <span class="nav-text">词法作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型链"><span class="nav-number">1.3.3.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串操作"><span class="nav-number">1.3.4.</span> <span class="nav-text">字符串操作</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <!--<i class="fa fa-user"></i>-->
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">淡退</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+-->
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="项目开发中git是非常重要的，它可以有效、高速地处理从很小到非常大的项目版本管理。">
+<meta name="keywords" content="Blog,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 基础学习">
+<meta property="og:url" content="http://yoursite.com/2019/09/05/2019/9/2019_9_8_git 基础学习/index.html">
+<meta property="og:site_name" content="淡退">
+<meta property="og:description" content="项目开发中git是非常重要的，它可以有效、高速地处理从很小到非常大的项目版本管理。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg">
+<meta property="og:updated_time" content="2019-11-24T09:49:54.644Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git 基础学习">
+<meta name="twitter:description" content="项目开发中git是非常重要的，它可以有效、高速地处理从很小到非常大的项目版本管理。">
+<meta name="twitter:image" content="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/09/05/2019/9/2019_9_8_git 基础学习/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>git 基础学习 | 淡退</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">淡退</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">---脂肪肝患者</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/2019/9/2019_9_8_git 基础学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">git 基础学习
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-05 23:10:17" itemprop="dateCreated datePublished" datetime="2019-09-05T23:10:17+08:00">2019-09-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-24 17:49:54" itemprop="dateModified" datetime="2019-11-24T17:49:54+08:00">2019-11-24</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+        <p>项目开发中git是非常重要的，它可以有效、高速地处理从很小到非常大的项目版本管理。</p>
+<a id="more"></a>
+
+<h2 id="资料："><a href="#资料：" class="headerlink" title="资料："></a>资料：</h2><ul>
+<li><p>廖雪峰git教程： <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/896043488029600</a></p>
+</li>
+<li><p>git 笔记： <a href="https://github.com/Zhangguoliu/learn-git/blob/master/learngit-note.md" target="_blank" rel="noopener">https://github.com/Zhangguoliu/learn-git/blob/master/learngit-note.md</a></p>
+</li>
+<li><p>git 教程： <a href="https://juejin.im/entry/599e14bf51882524463106cf" target="_blank" rel="noopener">https://juejin.im/entry/599e14bf51882524463106cf</a></p>
+</li>
+<li><p>了解git flow 协作开发理念 : <a href="https://www.cnblogs.com/cnblogsfans/p/5075073.html" target="_blank" rel="noopener">https://www.cnblogs.com/cnblogsfans/p/5075073.html</a></p>
+</li>
+</ul>
+<!-- - 了解hzero开发git规范： http://hzerodoc.saas.hand-china.com/zh/docs/development-specification/basic/branch-management/ -->
+
+<h2 id="项目开发常用命令"><a href="#项目开发常用命令" class="headerlink" title="项目开发常用命令"></a>项目开发常用命令</h2><p>本地主分支<br>origin/HEAD -&gt; origin/master  表示默认分支</p>
+<p>git show  可以查看提交详细信息</p>
+<p>git  status ：命令用于显示工作目录和暂存区的状态。使用此命令能看到那些修改被暂存到了, 哪些没有, 哪些文件没有被Git tracked到。git status不显示已经commit到项目历史中去的信息。 一般红色的没有被追踪到，绿色的是已经add后的， 意思就是被追踪了</p>
+<p>git add  将被文件放入暂存区 </p>
+<p>git config –local user.name ‘xxx’;</p>
+<p>git config –local user.email ‘xxx’;</p>
+<p>可以设置当前厂库的 用户和邮箱</p>
+<p>git config –global user.name ‘xxx’; </p>
+<p>git config –global user.email ‘xxx’;</p>
+<p>设置全局的仓库大的用户名 和邮箱</p>
+<p>如果这个命名存在也可以直接覆盖修改,还可以替换git config中已有的邮箱</p>
+<p>$  git config –global –replace-all user.email “输入你的邮箱”</p>
+<p>$  git config –global –replace-all user.name “输入你的用户名”</p>
+<p>git checkout -u origin/develop develop  在本地创建和远程分支对应的分支</p>
+<p>clone -b develop url 克隆指定分支下的内容</p>
+<p>一些git stash的操作 <a href="https://www.cnblogs.com/zndxall/archive/2018/09/04/9586088.html" target="_blank" rel="noopener">https://www.cnblogs.com/zndxall/archive/2018/09/04/9586088.html</a></p>
+<p>保存密码<br>git config credential.helper store</p>
+<h3 id="git-add-和-git-commit-做了什么"><a href="#git-add-和-git-commit-做了什么" class="headerlink" title="git add 和 git commit 做了什么"></a>git add 和 git commit 做了什么</h3><p>git add 将操作过的文件 提交到暂存（缓存）区，交给git进行管理。</p>
+<h3 id="项目开发中实际-git-操作顺序"><a href="#项目开发中实际-git-操作顺序" class="headerlink" title="项目开发中实际 git 操作顺序"></a>项目开发中实际 git 操作顺序</h3><p>提交的时候发现要拉取的 -&gt; 修改代码 -&gt; 先把自己的暂存(add 或者add 后加入stash) -&gt; 然后拉取 -&gt; 然后放出来 -&gt; 解决冲突 -&gt; 然后在提交。</p>
+<p>步骤：</p>
+<ol>
+<li>git pull</li>
+<li>写你的代码 </li>
+<li>git add 将你的修改提交到缓存区</li>
+<li>git stash 将缓存区的代码进行缓存 </li>
+<li>git pull </li>
+<li>git stash apply stash@{0} 将缓冲区的代码放出来</li>
+<li>可能会产生冲突 将冲突处理好  </li>
+<li>然后git add  git commit </li>
+<li>git push branch 提交到指点的分支。</li>
+</ol>
+<p>或者 </p>
+<ol>
+<li>git pull</li>
+<li>写你的代码 </li>
+<li>git add 将你的修改提交到缓存区</li>
+<li>git commit -m ‘message’</li>
+<li>git pull </li>
+<li>可能会产生冲突 将冲突处理好  </li>
+<li>然后git add  git commit </li>
+<li>git push branch 提交到指点的分支。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
+            
+              <a href="/tags/git/" rel="tag"># git</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/02/2019/9/2019_9_2_javascript基础学习/" rel="next" title="javascript基础学习">
+                  <i class="fa fa-chevron-left"></i> javascript基础学习
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/05/2019/9/vue基础学习笔记/" rel="prev" title="vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived)">
+                  vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived) <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658"
+      alt="淡退">
+  <p class="site-author-name" itemprop="name">淡退</p>
+  <div class="site-description motion-element" itemprop="description">欢迎你的到来！</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资料："><span class="nav-number">1.</span> <span class="nav-text">资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目开发常用命令"><span class="nav-number">2.</span> <span class="nav-text">项目开发常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-add-和-git-commit-做了什么"><span class="nav-number">2.1.</span> <span class="nav-text">git add 和 git commit 做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发中实际-git-操作顺序"><span class="nav-number">2.2.</span> <span class="nav-text">项目开发中实际 git 操作顺序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <!--<i class="fa fa-user"></i>-->
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">淡退</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+-->
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>

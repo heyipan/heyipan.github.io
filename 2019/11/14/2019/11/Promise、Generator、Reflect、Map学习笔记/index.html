@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="11-13 学习总结和笔记了解 Promise。  Generator、Reflect、Map。">
+<meta name="keywords" content="学习笔记和总结,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise、Generator、Reflect、Map学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/index.html">
+<meta property="og:site_name" content="淡退">
+<meta property="og:description" content="11-13 学习总结和笔记了解 Promise。  Generator、Reflect、Map。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg">
+<meta property="og:updated_time" content="2019-11-24T09:29:58.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise、Generator、Reflect、Map学习笔记">
+<meta name="twitter:description" content="11-13 学习总结和笔记了解 Promise。  Generator、Reflect、Map。">
+<meta name="twitter:image" content="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Promise、Generator、Reflect、Map学习笔记 | 淡退</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">淡退</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">---脂肪肝患者</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">Promise、Generator、Reflect、Map学习笔记
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-14 23:10:17" itemprop="dateCreated datePublished" datetime="2019-11-14T23:10:17+08:00">2019-11-14</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-24 17:29:58" itemprop="dateModified" datetime="2019-11-24T17:29:58+08:00">2019-11-24</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+        <h2 id="11-13-学习总结和笔记"><a href="#11-13-学习总结和笔记" class="headerlink" title="11-13 学习总结和笔记"></a>11-13 学习总结和笔记</h2><h3 id="了解"><a href="#了解" class="headerlink" title="了解"></a>了解</h3><ol>
+<li><p>Promise。</p>
+</li>
+<li><p>Generator、Reflect、Map。</p>
+<a id="more"></a>
+<h1 id="Promise、Generator、Reflect、Map学习笔记"><a href="#Promise、Generator、Reflect、Map学习笔记" class="headerlink" title="Promise、Generator、Reflect、Map学习笔记"></a>Promise、Generator、Reflect、Map学习笔记</h1></li>
+</ol>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise的出现是为了解决回调地狱的，使用Promise，我们就可以利用then进行「链式回调」</p>
+<p>构建Promise</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构建Promise</span></span><br><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>) &#123;</span><br><span class="line">        resolve(data);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">/* 异步操作失败 */</span></span><br><span class="line">        reject(error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>类似构建对象，使用new来构建一个Promise。Promise接受一个「函数」作为参数，该函数的两个参数分别是resolve和reject。这两个函数就是就是「回调函数」，由JavaScript引擎提供。</p>
+<p>Promise实例生成以后，可以用then方法指定resolved状态和reject状态的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//promise.then(onFulfilled, onRejected);</span></span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something when success</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something when failure</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>then方法会返回一个Promise。它有两个参数，分别为Promise从pending变为fulfilled和rejected时的回调函数（第二个参数非必选）。这两个函数都接受Promise对象传出的值作为参数。</p>
+<h3 id="catch"><a href="#catch" class="headerlink" title=".catch()"></a>.catch()</h3><p>该方法是.then(undefined, onRejected)的别名，用于指定发生错误时的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error'</span>, error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*******等同于*******/</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;).then(<span class="literal">undefined</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error'</span>, error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>promise</code>对象的错误，会一直向后传递，直到被捕获。即错误总会被下一个catch所捕获。then方法指定的回调函数，若抛出错误，也会被下一个<code>catch</code>捕获。<code>catch</code>中也能抛错，则需要后面的<code>catch</code>来捕获。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sendRequest(<span class="string">'test.html'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">data1</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">data2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//处理前面三个Promise产生的错误</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>promise</code>一旦<code>resolve</code>了再抛错，也不会变为<code>rejected</code>，就不会被<code>catch</code>了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  resolve();</span><br><span class="line">  <span class="keyword">throw</span> <span class="string">'error'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.catch(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(e);      <span class="comment">//This is never called</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果没有使用catch方法指定处理错误的回调函数，Promise对象抛出的错误不会传递到外层代码，即不会有任何反应</p>
+</blockquote>
+<h3 id="all"><a href="#all" class="headerlink" title=".all()"></a>.all()</h3><p>该方法用于将多个Promise实例，包装成一个新的Promise实例。 <code>var p = Promise.all([p1, p2, p3]);</code></p>
+<p>Promise.all方法接受一个数组（或具有Iterator接口）作参数，数组中的对象（p1、p2、p3）均为promise实例</p>
+<p>（如果不是一个promise，该项会被用Promise.resolve转换为一个promise)。它的状态由这三个promise实例决定。</p>
+<pre><code>1. 当p1, p2, p3状态都变为fulfilled，p的状态才会变为fulfilled，并将三个promise返回的结果，按参数
+
+的顺序（而不是 resolved的顺序）存入数组，传给p的回调函数
+
+2. 当p1, p2, p3其中之一状态变为rejected，p的状态也会变为rejected，并把第一个被reject的promise的
+
+返回值，传给p的回调函数，</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(resolve, <span class="number">3000</span>, <span class="string">"first"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    resolve(<span class="string">'second'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(resolve, <span class="number">1000</span>, <span class="string">"third"</span>);</span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(<span class="function"><span class="keyword">function</span>(<span class="params">values</span>) </span>&#123; </span><br><span class="line">  <span class="built_in">console</span>.log(values); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">-------output-------</span><br><span class="line"><span class="comment">//约 3s 后</span></span><br><span class="line">[<span class="string">"first"</span>, <span class="string">"second"</span>, <span class="string">"third"</span>] </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123; </span><br><span class="line">  setTimeout(resolve, <span class="number">1000</span>, <span class="string">"one"</span>); </span><br><span class="line">&#125;); </span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123; </span><br><span class="line">  setTimeout(reject, <span class="number">2000</span>, <span class="string">"two"</span>); </span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  reject(<span class="string">"three"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'resolve'</span>, value);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'reject'</span>, error);    <span class="comment">// =&gt; reject three</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">-------output-------</span><br><span class="line">reject three</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这多个 promise 是同时开始、并行执行的，而不是顺序执行</p>
+</blockquote>
+<h3 id="race"><a href="#race" class="headerlink" title=".race()"></a>.race()</h3><p>该方法同样是将多个Promise实例，包装成一个新的Promise实例。<code>var p = Promise.race([p1, p2, p3]);</code></p>
+<p><code>Promise.race</code>方法同样接受一个数组（或具有<code>Iterator</code>接口）作参数。当<code>p1, p2, p3</code>中有一个实例的状态发生改变（变为f<code>ulfilled或rejected</code>），<code>p</code>的状态就跟着改变。并把第一个改变状态的<code>promise</code>的返回值，传给p的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fastPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'fastPromise'</span>);</span><br><span class="line">        resolve(<span class="string">'resolve fastPromise'</span>);</span><br><span class="line">    &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> slowPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'slowPromise'</span>);</span><br><span class="line">        resolve(<span class="string">'resolve slowPromise'</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 第一个promise变为resolve后程序停止</span></span><br><span class="line"><span class="built_in">Promise</span>.race([fastPromise, slowPromise]).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);    <span class="comment">// =&gt; resolve fastPromise</span></span><br><span class="line">&#125;);</span><br><span class="line">-------output-------</span><br><span class="line">fastPromise</span><br><span class="line">resolve fastPromise</span><br><span class="line">slowPromise     <span class="comment">//仍会执行</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="resolve"><a href="#resolve" class="headerlink" title=".resolve()"></a>.resolve()</h3><p>它可以看做new Promise()的快捷方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'Success'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*******等同于*******/</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    resolve(<span class="string">'Success'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h2><h3 id="它的语法规则"><a href="#它的语法规则" class="headerlink" title="它的语法规则"></a>它的语法规则</h3><p>Generator 函数是一个普通函数，但是有两个特征。一是，function关键字与函数名之间有一个星号；</p>
+<p>二是，函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）。</p>
+<p>简单实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">helloWorldGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">'hello'</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">'world'</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'ending'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> hw = helloWorldGenerator();</span><br></pre></td></tr></table></figure>
+
+<p>上面函数它内部有两个yield表达式（hello和world），即该函数有三个状态：hello，world 和 return 语句（结束执行）。</p>
+<p>然后，Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。不同的是，调用 </p>
+<p>Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个遍历器对象（Iterator Object）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: 'hello', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: 'world', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: 'ending', done: true &#125;</span></span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 没有规定，function关键字与函数名之间的星号，写在哪个位置。这导致下面的写法都能通过。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>*<span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 Generator 函数仍然是普通函数，所以一般的写法是上面的第三种，即星号紧跟在function关键字后面。</p>
+<h3 id="yield表达式"><a href="#yield表达式" class="headerlink" title="yield表达式"></a>yield表达式</h3><ul>
+<li><p>yield是ES6的新关键字，使生成器函数执行暂停，yield关键字后面的表达式的值返回给生成器的调用者。它可以被认为是一个基于生成器的版本的return关键字。</p>
+</li>
+<li><p>yield关键字实际返回一个IteratorResult（迭代器）对象，它有两个属性，value和done，分别代表返回值和是否完成。</p>
+</li>
+<li><p>yield无法单独工作，需要配合generator(生成器)的其他函数，如next，懒汉式操作，展现强大的主动控制特性。</p>
+</li>
+</ul>
+<p>而且它只能用在遍历器函数里面,并且它有一个返回值{value: xxx,done: false},value就是当前遍历器暂停时返回</p>
+<p>的结果，done为false得时候，表示遍历器没遍历完，为true表示遍历已结束。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">  y = <span class="keyword">yield</span>(x+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = foo();</span><br></pre></td></tr></table></figure>
+
+<p>遍历器函数一个重要的特点就是需要next()方法才能执行，所以上面f = foo()什么都没发生，要用<code>f.next();</code></p>
+<p><code>f.next()</code>是遍历器第一次执行，当遍历至关键字<code>yield</code>时，函数暂停，并返回yield后面的值，所以此时返回<code>{value: 2,done: false}</code></p>
+<p>再执行一次<code>f.next()</code>,那么遍历器函数则从上次暂停的<code>yield</code>处开始，直接到<code>return</code>语句，所以结果是<code>{value: undefined,done: true}</code></p>
+<p>next()可以接收参数，就是可以将传入的参数作用于上一次yield</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> *(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="keyword">yield</span>(x+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">var</span> z = <span class="keyword">yield</span>(x+y);</span><br><span class="line">  <span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = f.next();   <span class="comment">// 2</span></span><br><span class="line"><span class="keyword">var</span> b = f.next(<span class="number">2</span>);  <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">var</span> c = f.next(<span class="number">4</span>);  <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次执行暂停于<code>yield(x+1)</code>,并返回于<code>x+1</code>等于2</p>
+<p>第二次执行，<code>next()</code>的参数<code>2</code>,就代替了上面的<code>yield(x+1)</code>，所以<code>y=2</code>,那么暂停于第二个<code>yield yield(x+y)</code>并返回<code>x+y</code>等于<code>3</code><br>同理,第三次执行<code>z=4，return z</code>等于<code>4</code></p>
+<blockquote>
+<p>注意: next()可以接受一个函数，将函数执行的结果返回 作为其值</p>
+</blockquote>
+<h2 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h2><h3 id="为什么要设计Reflect？"><a href="#为什么要设计Reflect？" class="headerlink" title="为什么要设计Reflect？"></a>为什么要设计Reflect？</h3><p>（1）将Object对象的属于语言内部的方法放到Reflect对象上，即从Reflect对象上拿Object对象内部方法。<br>（2）将用 老Object方法 报错的情况，改为返回false</p>
+<p>老写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(target, property, attributes);</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">Reflect</span>.defineProperty(target, property, attributes)) &#123;</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）让Object操作变成函数行为</p>
+<p>老写法（命令式写法）</p>
+<p><code>&#39;name&#39; in Object //true</code></p>
+<p>新写法</p>
+<p><code>Reflect.has(Object,&#39;name&#39;) //true</code></p>
+<p>（4）Reflect与Proxy是相辅相成的，在Proxy上有的方法，在Reflect就一定有</p>
+<h3 id="Reflect的常用API"><a href="#Reflect的常用API" class="headerlink" title="Reflect的常用API"></a>Reflect的常用API</h3><ol>
+<li>Reflect.get(target,property,receiver)</li>
+</ol>
+<p>与从 对象 (target[propertyKey]) 中读取属性类似，但它是通过一个函数执行来操作的。</p>
+<p><code>target</code>为需要取值的目标对象，<code>propertyKey</code>需要获取的值的键值，<code>receiver</code>为如果<code>target</code>对象中指定了<code>getter</code>，<code>receiver</code>则为<code>getter</code>调用时的<code>this</code>值。</p>
+<blockquote>
+<p>注意：如果Reflect.get()的第一个参数不是对象，则会报错。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.get(obj, <span class="string">"x"</span>); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="built_in">Reflect</span>.get([<span class="string">"zero"</span>, <span class="string">"one"</span>], <span class="number">1</span>); <span class="comment">// "one"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Proxy with a get handler</span></span><br><span class="line"><span class="keyword">var</span> x = &#123;<span class="attr">p</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(x, &#123;</span><br><span class="line">  <span class="keyword">get</span>(t, k, r) &#123; <span class="keyword">return</span> k + <span class="string">"bar"</span>; &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Reflect</span>.get(obj, <span class="string">"foo"</span>); <span class="comment">// "foobar"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Reflect.set(target,propName,propValue,receiver)</li>
+</ol>
+<p>就像在一个对象上设置一个属性。</p>
+<p><code>target</code>:需要取值的目标对象,<code>propertyKey</code>:需要获取的值的键值,<code>receiver</code>:如果<code>target</code>对象中指定了<code>getter</code>，<code>receiver</code>则为<code>getter</code>调用时的<code>this</code>值。</p>
+<blockquote>
+<p>如果目标值类型不是 Object，则抛出一个 TypeError。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.set(obj, <span class="string">"prop"</span>, <span class="string">"value"</span>); <span class="comment">// true</span></span><br><span class="line">obj.prop; <span class="comment">// "value"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">"duck"</span>, <span class="string">"duck"</span>, <span class="string">"duck"</span>];</span><br><span class="line"><span class="built_in">Reflect</span>.set(arr, <span class="number">2</span>, <span class="string">"goose"</span>); <span class="comment">// true</span></span><br><span class="line">arr[<span class="number">2</span>]; <span class="comment">// "goose"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// It can truncate an array.</span></span><br><span class="line"><span class="built_in">Reflect</span>.set(arr, <span class="string">"length"</span>, <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">arr; <span class="comment">// ["duck"];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// With just one argument, propertyKey and value are "undefined".</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.set(obj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Reflect</span>.getOwnPropertyDescriptor(obj, <span class="string">"undefined"</span>);</span><br><span class="line"><span class="comment">// &#123; value: undefined, writable: true, enumerable: true, configurable: true &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Reflect.has()</li>
+</ol>
+<p>作用与 in 操作符 相同。</p>
+<p><code>target</code>目标对象. <code>propertyKey</code>:属性名，需要检查目标对象是否存在此属性。</p>
+<blockquote>
+<p>如果目标对象并非Object 类型，抛出TypeError。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj= &#123;</span><br><span class="line">  name: <span class="string">"chen"</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>老写法 <code>&#39;name&#39; in obj // true</code></p>
+<p>新写法<code>Reflect.has(obj, &#39;name&#39;) // true</code></p>
+<p>参考文章：</p>
+<p><a href="https://www.jianshu.com/p/4a5eca0536c3" target="_blank" rel="noopener">ES6之Reflect</a></p>
+<p><a href="https://segmentfault.com/a/1190000010471230" target="_blank" rel="noopener">《深入理解ES6》笔记——代理（Proxy）和反射（Reflection）API（12）</a></p>
+<p><a href="https://blog.csdn.net/u013707249/article/details/78842602" target="_blank" rel="noopener">ES6黑科技实践–proxy,reflect</a></p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>javascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。</p>
+<p>ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。它是一个更完善的Hash结构。</p>
+<ol>
+<li>键值对，键可以是对象。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line"><span class="keyword">const</span> objkey = &#123;<span class="attr">p1</span>: <span class="string">'v1'</span>&#125;</span><br><span class="line"></span><br><span class="line">map1.set(objkey, <span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(map1.get(objkey))</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>结果：<code>hello</code></p>
+<ol start="2">
+<li><p>Map可以接受数组作为参数，数组成员还是一个数组，其中有两个元素，一个表示键一个表示值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map2 = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="string">'name'</span>, <span class="string">'Aissen'</span>],</span><br><span class="line">  [<span class="string">'age'</span>, <span class="number">12</span>]</span><br><span class="line">])</span><br><span class="line"><span class="built_in">console</span>.log(map2.get(<span class="string">'name'</span>))</span><br><span class="line"><span class="built_in">console</span>.log(map2.get(<span class="string">'age'</span>))</span><br><span class="line"><span class="string">``</span><span class="string">`      </span></span><br><span class="line"><span class="string">结果：</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br><span class="line">Aissen</span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>size  获取map的大小。</p>
+</li>
+<li><p>get 获取键对应的值。</p>
+</li>
+<li><p>has 判断指定的键是否存在。</p>
+</li>
+<li><p>delete  删除键值对。</p>
+</li>
+<li><p>clear 删除map中的所有键值对</p>
+</li>
+<li><p>set 设置键值对，键可以是各种类型，包括undefined，function。</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map4 = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map4.set(<span class="string">'k1'</span>, <span class="number">6</span>)        <span class="comment">// 键是字符串</span></span><br><span class="line">map4.set(<span class="number">222</span>, <span class="string">'哈哈哈'</span>)     <span class="comment">// 键是数值</span></span><br><span class="line">map4.set(<span class="literal">undefined</span>, <span class="string">'gagaga'</span>)    <span class="comment">// 键是 undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fun = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="built_in">console</span>.log(<span class="string">'hello'</span>);&#125;</span><br><span class="line">map4.set(fun, <span class="string">'fun'</span>) <span class="comment">// 键是 function</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'map4 size: %s'</span>, map4.size)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'undefined value: %s'</span>, map4.get(<span class="literal">undefined</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fun value: %s'</span>, map4.get(fun))</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map4 size: <span class="number">4</span></span><br><span class="line"><span class="literal">undefined</span> value: gagaga</span><br><span class="line">fun value: fun</span><br></pre></td></tr></table></figure>
+
+<p>也可对set进行链式调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map4.set(<span class="string">'k2'</span>, <span class="number">2</span>).set(<span class="string">'k3'</span>, <span class="number">4</span>).set(<span class="string">'k4'</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'map4 size: %s'</span>, map4.size)</span><br></pre></td></tr></table></figure>
+
+<p>结果：<code>map4 size: 7</code></p>
+<p>参考文章<br><a href="https://www.cnblogs.com/kongxianghai/p/7309735.html" target="_blank" rel="noopener">ES6，新增数据结构Map的用法</a></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/学习笔记和总结/" rel="tag"># 学习笔记和总结</a>
+            
+              <a href="/tags/js/" rel="tag"># js</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/11/14/2019/11/Hexo搭建个人博客/" rel="next" title="Hexo搭建个人博客">
+                  <i class="fa fa-chevron-left"></i> Hexo搭建个人博客
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/16/2019/11/关于一个项目多个环境的问题理解和解决办法/" rel="prev" title="关于一个项目多个环境的问题理解和解决办法">
+                  关于一个项目多个环境的问题理解和解决办法 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658"
+      alt="淡退">
+  <p class="site-author-name" itemprop="name">淡退</p>
+  <div class="site-description motion-element" itemprop="description">欢迎你的到来！</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-13-学习总结和笔记"><span class="nav-number">1.</span> <span class="nav-text">11-13 学习总结和笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解"><span class="nav-number">1.1.</span> <span class="nav-text">了解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise、Generator、Reflect、Map学习笔记"><span class="nav-number"></span> <span class="nav-text">Promise、Generator、Reflect、Map学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#catch"><span class="nav-number">1.1.</span> <span class="nav-text">.catch()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#all"><span class="nav-number">1.2.</span> <span class="nav-text">.all()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#race"><span class="nav-number">1.3.</span> <span class="nav-text">.race()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resolve"><span class="nav-number">1.4.</span> <span class="nav-text">.resolve()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generator"><span class="nav-number">2.</span> <span class="nav-text">Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#它的语法规则"><span class="nav-number">2.1.</span> <span class="nav-text">它的语法规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield表达式"><span class="nav-number">2.2.</span> <span class="nav-text">yield表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect"><span class="nav-number">3.</span> <span class="nav-text">Reflect</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要设计Reflect？"><span class="nav-number">3.1.</span> <span class="nav-text">为什么要设计Reflect？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflect的常用API"><span class="nav-number">3.2.</span> <span class="nav-text">Reflect的常用API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">4.</span> <span class="nav-text">Map</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <!--<i class="fa fa-user"></i>-->
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">淡退</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+-->
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>

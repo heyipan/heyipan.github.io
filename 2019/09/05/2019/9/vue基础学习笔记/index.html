@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="@ 指定到src目录在vue项目中 import 导入文件的时候，@是webpack指定了的别名，默认是指向src目录下。  vue项目配置sass和less基于前面创建的工程(用脚手架2.0版本创建的  安装sass的依赖包 123npm install --save-dev sass-loader //sass-loader依赖于node-sass npm install --save-d">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived)">
+<meta property="og:url" content="http://yoursite.com/2019/09/05/2019/9/vue基础学习笔记/index.html">
+<meta property="og:site_name" content="淡退">
+<meta property="og:description" content="@ 指定到src目录在vue项目中 import 导入文件的时候，@是webpack指定了的别名，默认是指向src目录下。  vue项目配置sass和less基于前面创建的工程(用脚手架2.0版本创建的  安装sass的依赖包 123npm install --save-dev sass-loader //sass-loader依赖于node-sass npm install --save-d">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg">
+<meta property="og:updated_time" content="2019-11-28T10:18:47.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived)">
+<meta name="twitter:description" content="@ 指定到src目录在vue项目中 import 导入文件的时候，@是webpack指定了的别名，默认是指向src目录下。  vue项目配置sass和less基于前面创建的工程(用脚手架2.0版本创建的  安装sass的依赖包 123npm install --save-dev sass-loader //sass-loader依赖于node-sass npm install --save-d">
+<meta name="twitter:image" content="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/09/05/2019/9/vue基础学习笔记/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived) | 淡退</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">淡退</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">---脂肪肝患者</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/2019/9/vue基础学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived)
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-05 23:10:17" itemprop="dateCreated datePublished" datetime="2019-09-05T23:10:17+08:00">2019-09-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-28 18:18:47" itemprop="dateModified" datetime="2019-11-28T18:18:47+08:00">2019-11-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+        <blockquote>
+<p> @ 指定到src目录<br>在vue项目中 import 导入文件的时候，@是webpack指定了的别名，默认是指向src目录下。</p>
+</blockquote>
+<h3 id="vue项目配置sass和less"><a href="#vue项目配置sass和less" class="headerlink" title="vue项目配置sass和less"></a>vue项目配置sass和less</h3><p>基于前面创建的工程(用脚手架2.0版本创建的</p>
+<ol>
+<li><p>安装sass的依赖包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev sass-loader </span><br><span class="line"><span class="comment">//sass-loader依赖于node-sass </span></span><br><span class="line">npm install --save-dev node-sass</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在build文件夹下的webpack.base.conf.js的rules里面添加配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">test</span>: <span class="regexp">/\.sass$/</span>, <span class="attr">loaders</span>: [‘style’, ‘css’, ‘sass’] &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后，在代码中的 style 标签中 加上<code>lang=&quot;less&quot;</code>属性即可<br><code>&lt;style type=&quot;text/less&quot; lang=”less&quot; rel=&quot;stylesheet/less&quot; scoped&gt;</code></p>
+</li>
+</ol>
+<h3 id="vue-配置router"><a href="#vue-配置router" class="headerlink" title="vue 配置router"></a>vue 配置router</h3><ol>
+<li><p>在路由配置页面引入路由组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后在该页面配置路由信息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Tab <span class="keyword">from</span> <span class="string">'@/views/tab'</span></span><br><span class="line"><span class="keyword">import</span> Contact <span class="keyword">from</span> <span class="string">'@/views/contact'</span></span><br><span class="line"><span class="keyword">import</span> Setting <span class="keyword">from</span> <span class="string">'@/views/setting'</span></span><br><span class="line"><span class="keyword">import</span> Log <span class="keyword">from</span> <span class="string">'@/views/log'</span></span><br><span class="line"><span class="keyword">import</span> One <span class="keyword">from</span> <span class="string">'@/views/setting/children/one'</span></span><br><span class="line"><span class="keyword">import</span> Two <span class="keyword">from</span> <span class="string">'@/views/setting/children/two'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/tab'</span>,</span><br><span class="line">      component: Tab,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/contact'</span>, <span class="attr">component</span>: Contact</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/setting'</span>,</span><br><span class="line">          component: Setting,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/one'</span>, <span class="attr">component</span>: One, <span class="attr">name</span>: <span class="string">'setting1'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/two'</span>, <span class="attr">component</span>: Two, <span class="attr">name</span>: <span class="string">'setting2'</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/log'</span>,</span><br><span class="line">      name: <span class="string">'log'</span>,</span><br><span class="line">      component: Log</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在路由页面引入页面的两种方式的import和require</p>
+</li>
+</ol>
+<p>我们看到是用的require的方式写的路由，所以上面的import就注释掉了，这种写法的好处，不仅仅是简单，还有这样写是按需加载，访问此路由时才加载这个js，会避免进入首页时加载内容过多，因为import引入，当项目打包时路由里的所有component都会打包在一个js中，而用require会将你的component分别打包成不同的js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//上面是import的方式。</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> A = <span class="function"><span class="params">r</span> =&gt;</span> <span class="built_in">require</span>.ensure([],() =&gt; r(<span class="built_in">require</span>(<span class="string">'@/views/RouterTest/A.vue'</span>)),<span class="string">'A'</span>);</span><br><span class="line"><span class="keyword">const</span> B = <span class="function"><span class="params">r</span> =&gt;</span> <span class="built_in">require</span>.ensure([],() =&gt; r(<span class="built_in">require</span>(<span class="string">'@/views/RouterTest/B.vue'</span>)),<span class="string">'B'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">'/a'</span>,<span class="attr">name</span>:<span class="string">'A'</span>,<span class="attr">component</span>:A&#125;,</span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">'/b'</span>,<span class="attr">name</span>:<span class="string">'B'</span>,<span class="attr">component</span>:B&#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="vue-路由传参-params-与-query两种方式的区别"><a href="#vue-路由传参-params-与-query两种方式的区别" class="headerlink" title="vue 路由传参 params 与 query两种方式的区别"></a>vue 路由传参 params 与 query两种方式的区别</h4><p>query更加类似于我们ajax中get传参，params则类似于post，前者在浏览器地址栏中显示参数，后者则不显示<br>在页面通过 this.$router.query和this.$router.params获取对应的参数。</p>
+<p>由于params是类似于post传参 所以当页面刷新后，就不能在获取到路由中的参数了。</p>
+<p>比如:下面这个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路由关系</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/tab'</span>,</span><br><span class="line">      component: Tab,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/contact'</span>, <span class="attr">component</span>: Contact</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/setting'</span>,</span><br><span class="line">          component: Setting,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/one'</span>, <span class="attr">component</span>: One, <span class="attr">name</span>: <span class="string">'setting1'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/two'</span>, <span class="attr">component</span>: Two, <span class="attr">name</span>: <span class="string">'setting2'</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/log'</span>,</span><br><span class="line">      name: <span class="string">'log'</span>,</span><br><span class="line">      component: Log</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>主要路由跳转页面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//selete.js</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"setting"</span>&gt;</span><br><span class="line">    Setting</span><br><span class="line"></span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;button @click=<span class="string">"toOne"</span>&gt; to one&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    &lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    &lt;button @click="toTwo"&gt; to two&lt;/</span>button&gt;</span><br><span class="line">    &lt;keep-alive&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;<span class="regexp">/keep-alive&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: "setting",</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      toOne() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'setting1', query: &#123;</span></span><br><span class="line"><span class="regexp">            msg: 'aa'</span></span><br><span class="line"><span class="regexp">          &#125;</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      toTwo() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'setting2', params: &#123;</span></span><br><span class="line"><span class="regexp">            msg: 'bb'</span></span><br><span class="line"><span class="regexp">          &#125;</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>one.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"setting-one"</span>&gt;</span><br><span class="line">    Setting One</span><br><span class="line"></span><br><span class="line">    &lt;button @click=<span class="string">"toLog"</span>&gt;to Log&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: "one",</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">      return &#123;</span></span><br><span class="line"><span class="regexp">        msg1: ''</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    created() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one created')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    activated() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one activated')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    deactivated() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one deactivated')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    mounted() &#123;</span></span><br><span class="line"><span class="regexp">      const &#123; msg &#125; = this.$route.query</span></span><br><span class="line"><span class="regexp">      this.msg1 = msg</span></span><br><span class="line"><span class="regexp">      console.log('this.msg1 = ', this.msg1)</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      toLog() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'log'</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    destroyed() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one destroyed')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>two.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"setting-two"</span>&gt;</span><br><span class="line">    Setting Two</span><br><span class="line"></span><br><span class="line">    &lt;button @click=<span class="string">"toLog"</span>&gt;to Log&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: "two",</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">      return &#123;</span></span><br><span class="line"><span class="regexp">        msg2: ''</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    created() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('two created')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    mounted() &#123;</span></span><br><span class="line"><span class="regexp">      const &#123; msg &#125; = this.$route.params</span></span><br><span class="line"><span class="regexp">      this.msg2 = msg</span></span><br><span class="line"><span class="regexp">      console.log('this.msg2 = ', this.msg2)</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      toLog() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'log'</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    destroyed() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('two destroyed')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>select.js</code>中两个点击事件可以控制路由的切换，同时两个路由切换的传参方式也不同。当点击<code>toOne()</code>的时候，我们发现<code>ne.js</code>中的<code>onted</code>方法执行了，并且可以得到参数，对应的浏览器地址栏中也显示参数。当刷新页面的时候，还是可以得到参数。</p>
+<p>当点击<code>toTwo()</code>的时候，我们发现<code>wo.js</code>中的<code>monted</code>方法执行了，并且可以得到参数，对应的浏览器地址栏中没有显示参数。当刷新页面的时候，打印参数值为<code>undefined</code>。</p>
+<p>同时在路由进行切换的时候，我们发现都执行了<code>destoryed</code>方法，下次再切换到当前路由的时候<code>created()</code>又会在从新执行。所以这里存在一个小的问题，当我们第一次进入该页面的时候，发送了数据请求。当离开该页面，切换到下一个页面在返回回来的时候，又会从新发送数据请求。这样会造成请求次数的浪费，而且用户的体验也不好。所以采用在<code>&lt;router-view/&gt;</code>外面使用<code>keep-Alive</code>标签。</p>
+<h4 id="keep-Alive-actived和deactived的用法。"><a href="#keep-Alive-actived和deactived的用法。" class="headerlink" title="keep-Alive  actived和deactived的用法。"></a>keep-Alive  actived和deactived的用法。</h4><p>在上面的select.js 中我们通过将kee-Alice包裹起来，然后进行路由跳转的时候发现，切换路由的时候，组件的destoryed方法不再执行，同时当切换回去的时候，create也不再执行，这样就做到了页面不再渲染的效果。</p>
+<p>但是我们的需求就是每次进入页面的时候都要进行请求呢。  keep-Alive 提供了两个方法来代替销毁和创造两个函数，actived和deactived。前一个方法会在进入的页面的时候执行，而后者会在离开的时候执行</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/vue/" rel="tag"># vue</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/05/2019/9/2019_9_8_git 基础学习/" rel="next" title="git 基础学习">
+                  <i class="fa fa-chevron-left"></i> git 基础学习
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/13/2019/11/ES6 Promise原生实现 、 Generator深入学习/" rel="prev" title="ES6 Promise原生实现 、 Generator深入学习">
+                  ES6 Promise原生实现 、 Generator深入学习 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658"
+      alt="淡退">
+  <p class="site-author-name" itemprop="name">淡退</p>
+  <div class="site-description motion-element" itemprop="description">欢迎你的到来！</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue项目配置sass和less"><span class="nav-number">1.</span> <span class="nav-text">vue项目配置sass和less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-配置router"><span class="nav-number">2.</span> <span class="nav-text">vue 配置router</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-路由传参-params-与-query两种方式的区别"><span class="nav-number">2.1.</span> <span class="nav-text">vue 路由传参 params 与 query两种方式的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keep-Alive-actived和deactived的用法。"><span class="nav-number">2.2.</span> <span class="nav-text">keep-Alive  actived和deactived的用法。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <!--<i class="fa fa-user"></i>-->
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">淡退</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+-->
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="问题：由于项目有多个环境（uat,dev,stg1,stg2）,现在的需求是更具不同的环境，要控制页面上一个按钮的显示和隐藏。 问题分析和处理：本地通过在yarn dev 命令里面通过传入不同的参数，然后页面通过js获取到不同环境的参数： 比如在开发环境中: 12345&amp;quot;scripts&amp;quot;: &amp;#123;    &amp;quot;start&amp;quot;: &amp;quot;cross-env">
+<meta name="keywords" content="react,学习笔记和总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于一个项目多个环境的问题理解和解决办法">
+<meta property="og:url" content="http://yoursite.com/2019/11/16/2019/11/关于一个项目多个环境的问题理解和解决办法/index.html">
+<meta property="og:site_name" content="淡退">
+<meta property="og:description" content="问题：由于项目有多个环境（uat,dev,stg1,stg2）,现在的需求是更具不同的环境，要控制页面上一个按钮的显示和隐藏。 问题分析和处理：本地通过在yarn dev 命令里面通过传入不同的参数，然后页面通过js获取到不同环境的参数： 比如在开发环境中: 12345&amp;quot;scripts&amp;quot;: &amp;#123;    &amp;quot;start&amp;quot;: &amp;quot;cross-env">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg">
+<meta property="og:updated_time" content="2019-11-28T09:47:17.923Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于一个项目多个环境的问题理解和解决办法">
+<meta name="twitter:description" content="问题：由于项目有多个环境（uat,dev,stg1,stg2）,现在的需求是更具不同的环境，要控制页面上一个按钮的显示和隐藏。 问题分析和处理：本地通过在yarn dev 命令里面通过传入不同的参数，然后页面通过js获取到不同环境的参数： 比如在开发环境中: 12345&amp;quot;scripts&amp;quot;: &amp;#123;    &amp;quot;start&amp;quot;: &amp;quot;cross-env">
+<meta name="twitter:image" content="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg">
+  <link rel="canonical" href="http://yoursite.com/2019/11/16/2019/11/关于一个项目多个环境的问题理解和解决办法/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>关于一个项目多个环境的问题理解和解决办法 | 淡退</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">淡退</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">---脂肪肝患者</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/2019/11/关于一个项目多个环境的问题理解和解决办法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">关于一个项目多个环境的问题理解和解决办法
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-16 21:10:17" itemprop="dateCreated datePublished" datetime="2019-11-16T21:10:17+08:00">2019-11-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-28 17:47:17" itemprop="dateModified" datetime="2019-11-28T17:47:17+08:00">2019-11-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+        <p>问题：由于项目有多个环境（uat,dev,stg1,stg2）,现在的需求是更具不同的环境，要控制页面上一个按钮的显示和隐藏。</p>
+<p>问题分析和处理：<br>本地通过在yarn dev 命令里面通过传入不同的参数，然后页面通过js获取到不同环境的参数： 比如在开发环境中:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;cross-env BASE_PATH=/ PLATFORM_VERSION=OP CLIENT_ID=localhost BPM_HOST=http://256.000.00.127:8170 API_HOST=http://256.000.00.127:8080 WEBSOCKET_HOST=ws:/256.000.00.127:8120 SRC_WEBSOCKET_URL=http://256.000.00.127:8500 node --max_old_space_size=4196 scripts/start.js&quot;,</span><br><span class="line">    &quot;dev&quot;: &quot;cross-env BASE_PATH=/ PLATFORM_VERSION=SAAS CLIENT_ID=gjoy-front-dev BPM_HOST=http://256.000.00.127:8170 API_HOST=http://256.000.00.127:8080 WEBSOCKET_HOST=http://256.000.00.127:8120 SRC_WEBSOCKET_URL=http://256.000.00.127:8500 node --max_old_space_size=8196 scripts/start.js&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;npm run lint:fix &amp;&amp; cross-env BASE_PATH=/ WEBSOCKET_HOST=BUILD_WEBSOCKET_HOST BPM_HOST=BUILD_BPM_HOST CLIENT_ID=BUILD_CLIENT_ID API_HOST=BUILD_API_HOST GENERATE_SOURCEMAP=false node --max_old_space_size=4196 scripts/build.js&quot;,</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>脚本涵义：<br>cross-env 运行跨平台设置和使用环境变量的脚本，（npm i –save-dev cross-env 安装使用）<br>dev、 build分别表示开发环境和线上环境<br>CLIENT_ID： 对应的值就是gjoy-front-dev<br>BPM_HOST: 对应的值为<a href="http://192.168.16.172:8170" target="_blank" rel="noopener">http://192.168.16.172:8170</a><br>总之： 等号前面就是参数的名字，后面就是参数的值。<br>在页面上就可以通过： process.env.xxx 来获取对应参数的值</p>
+<ol>
+<li>最简单的解决方式： 在不同的环境中 设置不同的环境变量，然后在jenkins构建的时候 不同的环境执行不同的命令就可以了。<br>比如：<br>uat环境构建的时候 ： 设置CLIENT_ID为project_name_uat<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">build:uat: &quot;npm run lint:fix &amp;&amp; cross-env CLIENT_ID=project_name_uat  node --max_old_space_size=4196 scripts/build.js&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>dev环境构建的时候 ： 设置CLIENT_ID为project_name_dev</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">build:dev: &quot;npm run lint:fix &amp;&amp; cross-env CLIENT_ID=project_name_uat  node --max_old_space_size=4196 scripts/build.js&quot;</span><br></pre></td></tr></table></figure>
+
+<p>stg环境构建的时候 ： 设置CLIENT_ID为project_name_stg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">build:stg: &quot;npm run lint:fix &amp;&amp; cross-env CLIENT_ID=project_name_uat  node --max_old_space_size=4196 scripts/build.js&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式：就是要在package.json中的scirpt中要写不同环境的不同命令。</p>
+<p>但是在jenkins中写死了构建的时候调用的时候 <code>yarn build</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &quot;npm run lint:fix &amp;&amp; cross-env BASE_PATH=/ WEBSOCKET_HOST=BUILD_WEBSOCKET_HOST BPM_HOST=BUILD_BPM_HOST CLIENT_ID=BUILD_CLIENT_ID API_HOST=BUILD_API_HOST GENERATE_SOURCEMAP=false node --max_old_space_size=4196 scripts/build.js&quot;,</span><br></pre></td></tr></table></figure>
+
+<p>这个命令，且他们不想在修改构建命令中指令。所以另外在构建的时候需要在服务器中跑sh脚本 将构建完成的代码中使用到这个环境变量的地方，批量替换了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/gjoy/apps/hces-front</span><br><span class="line">#git reset --hard</span><br><span class="line">git pull</span><br><span class="line">export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 #macos/linux</span><br><span class="line">#rm -rf ./node_modules</span><br><span class="line">#rm -rf ./yarn.lock</span><br><span class="line">#安装依赖 </span><br><span class="line">#yarn add choerodon-ui --registry=http://nexus.saas.hand-china.com/content/groups/hzero-npm-group/ -W -flag</span><br><span class="line">yarn bootstrap</span><br><span class="line">#编译子模块</span><br><span class="line">lerna run transpile</span><br><span class="line">#打包dll </span><br><span class="line">yarn build:dll</span><br><span class="line"># 构建</span><br><span class="line">yarn build</span><br><span class="line">cd /usr/share/nginx/html/gjoy/</span><br><span class="line">rm -rf dist</span><br><span class="line">cp -r /opt/gjoy/apps/hces-front/dist .</span><br><span class="line">./setup.sh</span><br></pre></td></tr></table></figure>
+
+<p>setup.sh </p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/react/" rel="tag"># react</a>
+            
+              <a href="/tags/学习笔记和总结/" rel="tag"># 学习笔记和总结</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/" rel="next" title="Promise、Generator、Reflect、Map学习笔记">
+                  <i class="fa fa-chevron-left"></i> Promise、Generator、Reflect、Map学习笔记
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/16/2019/11/React hookes/" rel="prev" title="React hookes 学习笔记">
+                  React hookes 学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658"
+      alt="淡退">
+  <p class="site-author-name" itemprop="name">淡退</p>
+  <div class="site-description motion-element" itemprop="description">欢迎你的到来！</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <!--<i class="fa fa-user"></i>-->
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">淡退</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+-->
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
