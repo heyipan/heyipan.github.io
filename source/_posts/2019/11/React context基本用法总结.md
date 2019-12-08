@@ -9,7 +9,7 @@ tags:
 photos: 
     - "https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/0C/02/ChMkJ13V9q6IOSp_AAPNPlvQOwwAAvV_QJYgfoAA81W947.jpg"
 ---
-
+<!--more-->
 ## 前言
 `Context`被翻译为上下文，在编程领域，这是一个经常会接触到的概念，React中也有。
 

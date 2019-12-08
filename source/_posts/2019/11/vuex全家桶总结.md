@@ -9,6 +9,7 @@ tags:
 photos: 
     - "https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg"
 ---
+<!--more-->
 ### vuex全家桶总结
 
 #### Vue脚手架引入store

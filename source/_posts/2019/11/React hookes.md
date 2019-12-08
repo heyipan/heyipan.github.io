@@ -9,6 +9,7 @@ tags:
 photos: 
     - "https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg"
 ---
+<!--more-->
 ## React hookes
 ### 基本要求：
 1. 只能在函数式组件中进行书写

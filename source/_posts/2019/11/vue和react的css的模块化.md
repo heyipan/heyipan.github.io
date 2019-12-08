@@ -9,6 +9,7 @@ tags:
 photos: 
     - "https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg"
 ---
+<!--more-->
 ### vue中的css 模块化
 #### style scope
 在vue的组件中如果<style scope></style>加上了scope，表明该标签里面写的样式都只作用在当前的页面，加上scope后，会自动添加一个唯一的属性，来确定该css样式作用的范围。
