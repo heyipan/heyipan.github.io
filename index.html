@@ -255,6 +255,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/2019/11/jenkins前端自动部署入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2019/12/06/2019/11/jenkins前端自动部署入门/" class="post-title-link" itemprop="url">jenkins前端自动部署入门</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-06 23:10:17" itemprop="dateCreated datePublished" datetime="2019-12-06T23:10:17+08:00">2019-12-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-08 21:06:26" itemprop="dateModified" datetime="2019-12-08T21:06:26+08:00">2019-12-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/0C/02/ChMkJ13V9q6IOSp_AAPNPlvQOwwAAvV_QJYgfoAA81W947.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+          
+            <a id="more"></a>
+
+<h2 id="jenkins前端自动部署入门"><a href="#jenkins前端自动部署入门" class="headerlink" title="jenkins前端自动部署入门"></a>jenkins前端自动部署入门</h2><p>由于前端项目打包后是静态资源，不需要进程守护。一般地，前端项目使用jenkins来进行自动部署，包括打包、测试等一系列流程</p>
+<p>由于 jenkins是基于java环境运行的，所以首先需要安装java环境</p>
+<p>参考：<br><a href="https://jingyan.baidu.com/article/375c8e190c1f9525f2a22931.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/375c8e190c1f9525f2a22931.html</a></p>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>1、下载地址：<a href="https://jenkins.io/download，" target="_blank" rel="noopener">https://jenkins.io/download，</a></p>
+<p>下载最后war包, 下载完成后进入下载后的目录，在<code>cmd</code>中输入 <code>java -jar jenkins.war</code> 然后在页面输入<code>localhost:8080</code></p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>　　启动jenkins服务后，可以在8080端口访问到jenkins<br><img src="https://pic.xiaohuochai.site/blog/jenkins1.png" alt></p>
+<p>然后在服务器的指定目录找到密码登录</p>
+<p>/var/lib/jenkins/secrets/initialAdminPassword</p>
+<p>按照默认配置安装插件 </p>
+<p><img src="https://pic.xiaohuochai.site/blog/jenkins2.png" alt></p>
+<p>等待插件安装完成</p>
+<p><img src="https://pic.xiaohuochai.site/blog/jenkins3.png" alt></p>
+<p>创建一个管理员账户，完成配置后，就可以登录 Jenkins 了</p>
+<p><img src="https://pic.xiaohuochai.site/blog/jenkins4.png" alt></p>
+<h4 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h4><p>下面来安装nodejs插件<br><img src="https://pic.xiaohuochai.site/blog/jenkins6.png" alt></p>
+<p>可以看到，Jenkins提供了丰富的插件供开发者使用，找到需要的[NodeJS Plugin]，勾选后点击安装即可</p>
+<p><img src="https://pic.xiaohuochai.site/blog/jenkins7.png" alt></p>
+<blockquote>
+<p>可能会出现网络不好或者被墙的情况，可以换一下域（百度一下）</p>
+</blockquote>
+<h4 id="配置任务"><a href="#配置任务" class="headerlink" title="配置任务"></a>配置任务</h4><ol>
+<li>安装好github钩子以及nodejs插件后，接下来开始配置任务</li>
+</ol>
+<p>　　点击创建一个新任务，填写任务名称，构建的项目类型可根据实际情况进行选择，本次选择第一种即可<br>　　<br><img src="https://pic.xiaohuochai.site/blog/jenkins5.png" alt></p>
+<ol start="2">
+<li>配置基础信息</li>
+</ol>
+<p><img src="https://pic.xiaohuochai.site/blog/jenkins12.png" alt></p>
+<ol start="3">
+<li><p>往下拉，看到源码管理，点选Git，依然填写博客对应的Repo地址<br><img src="https://pic.xiaohuochai.site/blog/jenkins13.png" alt></p>
+</li>
+<li><p>继续往下拉，在构建触发器单击增加构建步骤，在弹出的下拉菜单中选择<code>Execute shell。勾选GitHub hook trigger for GITScm polling</code>。构建环境选择nodejs</p>
+</li>
+</ol>
+<p><img src="https://pic.xiaohuochai.site/blog/jenkins14.png" alt></p>
+<ol start="5">
+<li>构建过程<br>一般地，构建过程，输入如下 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install &amp;&amp;</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="问题处理："><a href="#问题处理：" class="headerlink" title="问题处理："></a>问题处理：</h3><ol>
+<li><p>假如证书有问题的话会报错：<br><img src="https://img2018.cnblogs.com/blog/1406304/201905/1406304-20190527105223189-1051377169.png" alt><br>可以点击：  <a href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</a></p>
+<p>滑动到最后，配置修改地址，将https改成http，</p>
+</li>
+</ol>
+<p><a href="http://updates.jenkins.io/update-center.json" target="_blank" rel="noopener">http://updates.jenkins.io/update-center.json</a></p>
+<p>或者</p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</a></p>
+<p>然后点击submit-&gt;checknow</p>
+<ol start="2">
+<li>插件管理页面提示：There were errors <code>checking the update sites:IOException:Unable to tunnel through proxy.Proxy returins &quot;HTTP/1.1 400&quot;</code><br><img src="https://img2018.cnblogs.com/blog/1406304/201905/1406304-20190524095823763-636781851.png" alt><br>解决办法和第一个是一样的。</li>
+</ol>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://blog.csdn.net/lykio_881210/article/details/88557728" target="_blank" rel="noopener">Jenkins+GitHub集成接口测试环境部署</a></li>
+<li><a href="https://www.cnblogs.com/grey-wolf/p/8716662.html" target="_blank" rel="noopener">jenkins实战（一）：war安装及插件安装</a></li>
+<li><a href="https://www.cnblogs.com/imyalost/p/8677345.html" target="_blank" rel="noopener">jenkins简单安装及配置（Windows环境）</a></li>
+<li><a href="https://blog.csdn.net/GISuuser/article/details/100121237" target="_blank" rel="noopener">Jenkins安装与插件安装连接超时问题</a></li>
+<li><a href="https://blog.csdn.net/u011922006/article/details/88187060" target="_blank" rel="noopener">jenkins+github集成自动化测试环境搭建（1）-jenkins和github安装</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/22/2019/11/Decorator装饰器 学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -458,7 +632,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 18:13:59" itemprop="dateModified" datetime="2019-11-28T18:13:59+08:00">2019-11-28</time>
+                <time title="修改时间：2019-12-08 21:06:45" itemprop="dateModified" datetime="2019-12-08T21:06:45+08:00">2019-12-08</time>
               </span>
             
           
@@ -496,7 +670,8 @@
           </div>
         </div>
           
-            <h3 id="vuex全家桶总结"><a href="#vuex全家桶总结" class="headerlink" title="vuex全家桶总结"></a>vuex全家桶总结</h3><h4 id="Vue脚手架引入store"><a href="#Vue脚手架引入store" class="headerlink" title="Vue脚手架引入store"></a>Vue脚手架引入store</h4><ol>
+            <a id="more"></a>
+<h3 id="vuex全家桶总结"><a href="#vuex全家桶总结" class="headerlink" title="vuex全家桶总结"></a>vuex全家桶总结</h3><h4 id="Vue脚手架引入store"><a href="#Vue脚手架引入store" class="headerlink" title="Vue脚手架引入store"></a>Vue脚手架引入store</h4><ol>
 <li>利用npm包管理工具，进行安装 vuex。在控制命令行中输入下边的命令就可以了。<br>npm install vuex –save<br>要注意的是这里一定要加上 –save，因为你这个包我们在生产环境中是要使用的。</li>
 <li>一个store文件夹，并在文件夹下新建store.js文件，文件中引入我们的vue和vuex。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span>;</span><br></pre></td></tr></table></figure>
 
@@ -626,7 +801,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 18:22:34" itemprop="dateModified" datetime="2019-11-28T18:22:34+08:00">2019-11-28</time>
+                <time title="修改时间：2019-12-08 21:06:41" itemprop="dateModified" datetime="2019-12-08T21:06:41+08:00">2019-12-08</time>
               </span>
             
           
@@ -664,7 +839,8 @@
           </div>
         </div>
           
-            <h3 id="vue中的css-模块化"><a href="#vue中的css-模块化" class="headerlink" title="vue中的css 模块化"></a>vue中的css 模块化</h3><h4 id="style-scope"><a href="#style-scope" class="headerlink" title="style scope"></a>style scope</h4><p>在vue的组件中如果<style scope></style>加上了scope，表明该标签里面写的样式都只作用在当前的页面，加上scope后，会自动添加一个唯一的属性，来确定该css样式作用的范围。<br>比如：</p>
+            <a id="more"></a>
+<h3 id="vue中的css-模块化"><a href="#vue中的css-模块化" class="headerlink" title="vue中的css 模块化"></a>vue中的css 模块化</h3><h4 id="style-scope"><a href="#style-scope" class="headerlink" title="style scope"></a>style scope</h4><p>在vue的组件中如果<style scope></style>加上了scope，表明该标签里面写的样式都只作用在当前的页面，加上scope后，会自动添加一个唯一的属性，来确定该css样式作用的范围。<br>比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line">.example &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"example"</span>&gt;</span>hi<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>编译渲染后的结果为：</p>
@@ -758,7 +934,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 17:44:43" itemprop="dateModified" datetime="2019-11-28T17:44:43+08:00">2019-11-28</time>
+                <time title="修改时间：2019-12-08 21:06:35" itemprop="dateModified" datetime="2019-12-08T21:06:35+08:00">2019-12-08</time>
               </span>
             
           
@@ -796,7 +972,8 @@
           </div>
         </div>
           
-            <h2 id="React-hookes"><a href="#React-hookes" class="headerlink" title="React hookes"></a>React hookes</h2><h3 id="基本要求："><a href="#基本要求：" class="headerlink" title="基本要求："></a>基本要求：</h3><ol>
+            <a id="more"></a>
+<h2 id="React-hookes"><a href="#React-hookes" class="headerlink" title="React hookes"></a>React hookes</h2><h3 id="基本要求："><a href="#基本要求：" class="headerlink" title="基本要求："></a>基本要求：</h3><ol>
 <li>只能在函数式组件中进行书写</li>
 <li>只能在顶层调用Hooks。不要在循环，条件或嵌套函数中调用Hook。比如在if/eles 中就不能进行书写。</li>
 </ol>
@@ -905,7 +1082,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 17:47:17" itemprop="dateModified" datetime="2019-11-28T17:47:17+08:00">2019-11-28</time>
+                <time title="修改时间：2019-12-08 21:06:13" itemprop="dateModified" datetime="2019-12-08T21:06:13+08:00">2019-12-08</time>
               </span>
             
           
@@ -943,7 +1120,8 @@
           </div>
         </div>
           
-            <p>问题：由于项目有多个环境（uat,dev,stg1,stg2）,现在的需求是更具不同的环境，要控制页面上一个按钮的显示和隐藏。</p>
+            <a id="more"></a>
+<p>问题：由于项目有多个环境（uat,dev,stg1,stg2）,现在的需求是更具不同的环境，要控制页面上一个按钮的显示和隐藏。</p>
 <p>问题分析和处理：<br>本地通过在yarn dev 命令里面通过传入不同的参数，然后页面通过js获取到不同环境的参数： 比如在开发环境中:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;cross-env BASE_PATH=/ PLATFORM_VERSION=OP CLIENT_ID=localhost BPM_HOST=http://256.000.00.127:8170 API_HOST=http://256.000.00.127:8080 WEBSOCKET_HOST=ws:/256.000.00.127:8120 SRC_WEBSOCKET_URL=http://256.000.00.127:8500 node --max_old_space_size=4196 scripts/start.js&quot;,</span><br><span class="line">    &quot;dev&quot;: &quot;cross-env BASE_PATH=/ PLATFORM_VERSION=SAAS CLIENT_ID=gjoy-front-dev BPM_HOST=http://256.000.00.127:8170 API_HOST=http://256.000.00.127:8080 WEBSOCKET_HOST=http://256.000.00.127:8120 SRC_WEBSOCKET_URL=http://256.000.00.127:8500 node --max_old_space_size=8196 scripts/start.js&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;npm run lint:fix &amp;&amp; cross-env BASE_PATH=/ WEBSOCKET_HOST=BUILD_WEBSOCKET_HOST BPM_HOST=BUILD_BPM_HOST CLIENT_ID=BUILD_CLIENT_ID API_HOST=BUILD_API_HOST GENERATE_SOURCEMAP=false node --max_old_space_size=4196 scripts/build.js&quot;,</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
 
@@ -969,128 +1147,6 @@
 <p>setup.sh </p>
 
           
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="淡退">
-      <meta itemprop="description" content="欢迎你的到来！">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="淡退">
-    </span>
-      <header class="post-header">
-        
-          <i class="fa fa-thumb-tack"></i>
-          <font color=7D26CD>置顶</font>
-        
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/" class="post-title-link" itemprop="url">Promise、Generator、Reflect、Map学习笔记</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-14 23:10:17" itemprop="dateCreated datePublished" datetime="2019-11-14T23:10:17+08:00">2019-11-14</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-24 17:29:58" itemprop="dateModified" datetime="2019-11-24T17:29:58+08:00">2019-11-24</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-            <div class="post-gallery-row">
-              <img src="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg" itemprop="contentUrl">
-            
-          
-
-          </div>
-        </div>
-          <h2 id="11-13-学习总结和笔记"><a href="#11-13-学习总结和笔记" class="headerlink" title="11-13 学习总结和笔记"></a>11-13 学习总结和笔记</h2><h3 id="了解"><a href="#了解" class="headerlink" title="了解"></a>了解</h3><ol>
-<li><p>Promise。</p>
-</li>
-<li><p>Generator、Reflect、Map。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1163,7 +1219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 17:51:06" itemprop="dateModified" datetime="2019-11-28T17:51:06+08:00">2019-11-28</time>
+                <time title="修改时间：2019-12-08 21:06:33" itemprop="dateModified" datetime="2019-12-08T21:06:33+08:00">2019-12-08</time>
               </span>
             
           
@@ -1201,7 +1257,8 @@
           </div>
         </div>
           
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Context</code>被翻译为上下文，在编程领域，这是一个经常会接触到的概念，React中也有。</p>
+            <a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Context</code>被翻译为上下文，在编程领域，这是一个经常会接触到的概念，React中也有。</p>
 <p>在<code>React</code>的官方文档中，<code>Context</code>被归类为高级部分<code>(Advanced)</code>，属于React的高级API，但官方并不建议在稳定版的App中使用<code>Contex</code>。</p>
 <p>不过，这并非意味着我们不需要关注<code>Context</code>。事实上，很多优秀的<code>React</code>组件都通过<code>Context</code>来完成自己的功能，比如<code>react-redux的&lt;Provider /&gt;</code>，就是通过<code>Context</code>提供一个全局态的<code>store</code>，拖拽组件r<code>eact-dnd</code>，通过<code>Context</code>在组件中分发<code>DOM</code>的<code>Drag</code>和<code>Drop</code>事件，路由组件<code>react-router</code>通过<code>Context</code>管理路由状态等等。在React组件开发中，如果用好Context，可以让你的组件变得强大，而且灵活。</p>
 <h3 id="初识React-Context"><a href="#初识React-Context" class="headerlink" title="初识React Context"></a>初识React Context</h3><p>当你不想在组件树中通过逐层传递<code>props</code>或者<code>state</code>的方式来传递数据时，可以使用Context来实现跨层级的组件数据传递。<br><img src="https://upload-images.jianshu.io/upload_images/1457831-b19e007758f57df7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt><br>使用<code>props</code>或者<code>state</code>传递数据，数据自顶下流。<br><img src="https://upload-images.jianshu.io/upload_images/1457831-1b8e3c5ce88f7758?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt><br>使用Context，可以跨越组件进行数据传递。</p>
@@ -1333,7 +1390,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 17:54:12" itemprop="dateModified" datetime="2019-11-28T17:54:12+08:00">2019-11-28</time>
+                <time title="修改时间：2019-12-08 21:06:19" itemprop="dateModified" datetime="2019-12-08T21:06:19+08:00">2019-12-08</time>
               </span>
             
           
@@ -1371,7 +1428,8 @@
           </div>
         </div>
           
-            <h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><ol>
+            <a id="more"></a>
+<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><ol>
 <li>安装 Node</li>
 <li>安装 Git</li>
 <li>注册码云</li>
@@ -1571,6 +1629,289 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="淡退">
+      <meta itemprop="description" content="欢迎你的到来！">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="淡退">
+    </span>
+      <header class="post-header">
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2019/11/14/2019/11/Promise、Generator、Reflect、Map学习笔记/" class="post-title-link" itemprop="url">Promise、Generator、Reflect、Map学习笔记</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-14 23:10:17" itemprop="dateCreated datePublished" datetime="2019-11-14T23:10:17+08:00">2019-11-14</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-08 21:06:30" itemprop="dateModified" datetime="2019-12-08T21:06:30+08:00">2019-12-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="https://desk-fd.zol-img.com.cn/t_s1440x900c5/g5/M00/0C/00/ChMkJ13VHGeIQbMvAAZiH-yBkAsAAvVdQCGfhkABmI3388.jpg" itemprop="contentUrl">
+            
+          
+
+          </div>
+        </div>
+          
+            <a id="more"></a>
+<h2 id="11-13-学习总结和笔记"><a href="#11-13-学习总结和笔记" class="headerlink" title="11-13 学习总结和笔记"></a>11-13 学习总结和笔记</h2><h3 id="了解"><a href="#了解" class="headerlink" title="了解"></a>了解</h3><ol>
+<li><p>Promise。</p>
+</li>
+<li><p>Generator、Reflect、Map。</p>
+<!--more-->
+<h1 id="Promise、Generator、Reflect、Map学习笔记"><a href="#Promise、Generator、Reflect、Map学习笔记" class="headerlink" title="Promise、Generator、Reflect、Map学习笔记"></a>Promise、Generator、Reflect、Map学习笔记</h1></li>
+</ol>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise的出现是为了解决回调地狱的，使用Promise，我们就可以利用then进行「链式回调」</p>
+<p>构建Promise</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构建Promise</span></span><br><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>) &#123;</span><br><span class="line">        resolve(data);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">/* 异步操作失败 */</span></span><br><span class="line">        reject(error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>类似构建对象，使用new来构建一个Promise。Promise接受一个「函数」作为参数，该函数的两个参数分别是resolve和reject。这两个函数就是就是「回调函数」，由JavaScript引擎提供。</p>
+<p>Promise实例生成以后，可以用then方法指定resolved状态和reject状态的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//promise.then(onFulfilled, onRejected);</span></span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something when success</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something when failure</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>then方法会返回一个Promise。它有两个参数，分别为Promise从pending变为fulfilled和rejected时的回调函数（第二个参数非必选）。这两个函数都接受Promise对象传出的值作为参数。</p>
+<h3 id="catch"><a href="#catch" class="headerlink" title=".catch()"></a>.catch()</h3><p>该方法是.then(undefined, onRejected)的别名，用于指定发生错误时的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error'</span>, error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*******等同于*******/</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;).then(<span class="literal">undefined</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error'</span>, error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>promise</code>对象的错误，会一直向后传递，直到被捕获。即错误总会被下一个catch所捕获。then方法指定的回调函数，若抛出错误，也会被下一个<code>catch</code>捕获。<code>catch</code>中也能抛错，则需要后面的<code>catch</code>来捕获。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sendRequest(<span class="string">'test.html'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">data1</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">data2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//处理前面三个Promise产生的错误</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>promise</code>一旦<code>resolve</code>了再抛错，也不会变为<code>rejected</code>，就不会被<code>catch</code>了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  resolve();</span><br><span class="line">  <span class="keyword">throw</span> <span class="string">'error'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.catch(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(e);      <span class="comment">//This is never called</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果没有使用catch方法指定处理错误的回调函数，Promise对象抛出的错误不会传递到外层代码，即不会有任何反应</p>
+</blockquote>
+<h3 id="all"><a href="#all" class="headerlink" title=".all()"></a>.all()</h3><p>该方法用于将多个Promise实例，包装成一个新的Promise实例。 <code>var p = Promise.all([p1, p2, p3]);</code></p>
+<p>Promise.all方法接受一个数组（或具有Iterator接口）作参数，数组中的对象（p1、p2、p3）均为promise实例</p>
+<p>（如果不是一个promise，该项会被用Promise.resolve转换为一个promise)。它的状态由这三个promise实例决定。</p>
+<pre><code>1. 当p1, p2, p3状态都变为fulfilled，p的状态才会变为fulfilled，并将三个promise返回的结果，按参数
+
+的顺序（而不是 resolved的顺序）存入数组，传给p的回调函数
+
+2. 当p1, p2, p3其中之一状态变为rejected，p的状态也会变为rejected，并把第一个被reject的promise的
+
+返回值，传给p的回调函数，</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(resolve, <span class="number">3000</span>, <span class="string">"first"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    resolve(<span class="string">'second'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(resolve, <span class="number">1000</span>, <span class="string">"third"</span>);</span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(<span class="function"><span class="keyword">function</span>(<span class="params">values</span>) </span>&#123; </span><br><span class="line">  <span class="built_in">console</span>.log(values); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">-------output-------</span><br><span class="line"><span class="comment">//约 3s 后</span></span><br><span class="line">[<span class="string">"first"</span>, <span class="string">"second"</span>, <span class="string">"third"</span>] </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123; </span><br><span class="line">  setTimeout(resolve, <span class="number">1000</span>, <span class="string">"one"</span>); </span><br><span class="line">&#125;); </span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123; </span><br><span class="line">  setTimeout(reject, <span class="number">2000</span>, <span class="string">"two"</span>); </span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  reject(<span class="string">"three"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'resolve'</span>, value);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'reject'</span>, error);    <span class="comment">// =&gt; reject three</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">-------output-------</span><br><span class="line">reject three</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这多个 promise 是同时开始、并行执行的，而不是顺序执行</p>
+</blockquote>
+<h3 id="race"><a href="#race" class="headerlink" title=".race()"></a>.race()</h3><p>该方法同样是将多个Promise实例，包装成一个新的Promise实例。<code>var p = Promise.race([p1, p2, p3]);</code></p>
+<p><code>Promise.race</code>方法同样接受一个数组（或具有<code>Iterator</code>接口）作参数。当<code>p1, p2, p3</code>中有一个实例的状态发生改变（变为f<code>ulfilled或rejected</code>），<code>p</code>的状态就跟着改变。并把第一个改变状态的<code>promise</code>的返回值，传给p的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fastPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'fastPromise'</span>);</span><br><span class="line">        resolve(<span class="string">'resolve fastPromise'</span>);</span><br><span class="line">    &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> slowPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'slowPromise'</span>);</span><br><span class="line">        resolve(<span class="string">'resolve slowPromise'</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 第一个promise变为resolve后程序停止</span></span><br><span class="line"><span class="built_in">Promise</span>.race([fastPromise, slowPromise]).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);    <span class="comment">// =&gt; resolve fastPromise</span></span><br><span class="line">&#125;);</span><br><span class="line">-------output-------</span><br><span class="line">fastPromise</span><br><span class="line">resolve fastPromise</span><br><span class="line">slowPromise     <span class="comment">//仍会执行</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="resolve"><a href="#resolve" class="headerlink" title=".resolve()"></a>.resolve()</h3><p>它可以看做new Promise()的快捷方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'Success'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*******等同于*******/</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    resolve(<span class="string">'Success'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h2><h3 id="它的语法规则"><a href="#它的语法规则" class="headerlink" title="它的语法规则"></a>它的语法规则</h3><p>Generator 函数是一个普通函数，但是有两个特征。一是，function关键字与函数名之间有一个星号；</p>
+<p>二是，函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）。</p>
+<p>简单实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">helloWorldGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">'hello'</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">'world'</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'ending'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> hw = helloWorldGenerator();</span><br></pre></td></tr></table></figure>
+
+<p>上面函数它内部有两个yield表达式（hello和world），即该函数有三个状态：hello，world 和 return 语句（结束执行）。</p>
+<p>然后，Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。不同的是，调用 </p>
+<p>Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个遍历器对象（Iterator Object）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: 'hello', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: 'world', done: false &#125;</span></span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: 'ending', done: true &#125;</span></span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 没有规定，function关键字与函数名之间的星号，写在哪个位置。这导致下面的写法都能通过。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>*<span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123; ··· &#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 Generator 函数仍然是普通函数，所以一般的写法是上面的第三种，即星号紧跟在function关键字后面。</p>
+<h3 id="yield表达式"><a href="#yield表达式" class="headerlink" title="yield表达式"></a>yield表达式</h3><ul>
+<li><p>yield是ES6的新关键字，使生成器函数执行暂停，yield关键字后面的表达式的值返回给生成器的调用者。它可以被认为是一个基于生成器的版本的return关键字。</p>
+</li>
+<li><p>yield关键字实际返回一个IteratorResult（迭代器）对象，它有两个属性，value和done，分别代表返回值和是否完成。</p>
+</li>
+<li><p>yield无法单独工作，需要配合generator(生成器)的其他函数，如next，懒汉式操作，展现强大的主动控制特性。</p>
+</li>
+</ul>
+<p>而且它只能用在遍历器函数里面,并且它有一个返回值{value: xxx,done: false},value就是当前遍历器暂停时返回</p>
+<p>的结果，done为false得时候，表示遍历器没遍历完，为true表示遍历已结束。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">  y = <span class="keyword">yield</span>(x+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = foo();</span><br></pre></td></tr></table></figure>
+
+<p>遍历器函数一个重要的特点就是需要next()方法才能执行，所以上面f = foo()什么都没发生，要用<code>f.next();</code></p>
+<p><code>f.next()</code>是遍历器第一次执行，当遍历至关键字<code>yield</code>时，函数暂停，并返回yield后面的值，所以此时返回<code>{value: 2,done: false}</code></p>
+<p>再执行一次<code>f.next()</code>,那么遍历器函数则从上次暂停的<code>yield</code>处开始，直接到<code>return</code>语句，所以结果是<code>{value: undefined,done: true}</code></p>
+<p>next()可以接收参数，就是可以将传入的参数作用于上一次yield</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> *(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="keyword">yield</span>(x+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">var</span> z = <span class="keyword">yield</span>(x+y);</span><br><span class="line">  <span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = f.next();   <span class="comment">// 2</span></span><br><span class="line"><span class="keyword">var</span> b = f.next(<span class="number">2</span>);  <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">var</span> c = f.next(<span class="number">4</span>);  <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次执行暂停于<code>yield(x+1)</code>,并返回于<code>x+1</code>等于2</p>
+<p>第二次执行，<code>next()</code>的参数<code>2</code>,就代替了上面的<code>yield(x+1)</code>，所以<code>y=2</code>,那么暂停于第二个<code>yield yield(x+y)</code>并返回<code>x+y</code>等于<code>3</code><br>同理,第三次执行<code>z=4，return z</code>等于<code>4</code></p>
+<blockquote>
+<p>注意: next()可以接受一个函数，将函数执行的结果返回 作为其值</p>
+</blockquote>
+<h2 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h2><h3 id="为什么要设计Reflect？"><a href="#为什么要设计Reflect？" class="headerlink" title="为什么要设计Reflect？"></a>为什么要设计Reflect？</h3><p>（1）将Object对象的属于语言内部的方法放到Reflect对象上，即从Reflect对象上拿Object对象内部方法。<br>（2）将用 老Object方法 报错的情况，改为返回false</p>
+<p>老写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(target, property, attributes);</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">Reflect</span>.defineProperty(target, property, attributes)) &#123;</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）让Object操作变成函数行为</p>
+<p>老写法（命令式写法）</p>
+<p><code>&#39;name&#39; in Object //true</code></p>
+<p>新写法</p>
+<p><code>Reflect.has(Object,&#39;name&#39;) //true</code></p>
+<p>（4）Reflect与Proxy是相辅相成的，在Proxy上有的方法，在Reflect就一定有</p>
+<h3 id="Reflect的常用API"><a href="#Reflect的常用API" class="headerlink" title="Reflect的常用API"></a>Reflect的常用API</h3><ol>
+<li>Reflect.get(target,property,receiver)</li>
+</ol>
+<p>与从 对象 (target[propertyKey]) 中读取属性类似，但它是通过一个函数执行来操作的。</p>
+<p><code>target</code>为需要取值的目标对象，<code>propertyKey</code>需要获取的值的键值，<code>receiver</code>为如果<code>target</code>对象中指定了<code>getter</code>，<code>receiver</code>则为<code>getter</code>调用时的<code>this</code>值。</p>
+<blockquote>
+<p>注意：如果Reflect.get()的第一个参数不是对象，则会报错。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.get(obj, <span class="string">"x"</span>); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="built_in">Reflect</span>.get([<span class="string">"zero"</span>, <span class="string">"one"</span>], <span class="number">1</span>); <span class="comment">// "one"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Proxy with a get handler</span></span><br><span class="line"><span class="keyword">var</span> x = &#123;<span class="attr">p</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(x, &#123;</span><br><span class="line">  <span class="keyword">get</span>(t, k, r) &#123; <span class="keyword">return</span> k + <span class="string">"bar"</span>; &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Reflect</span>.get(obj, <span class="string">"foo"</span>); <span class="comment">// "foobar"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Reflect.set(target,propName,propValue,receiver)</li>
+</ol>
+<p>就像在一个对象上设置一个属性。</p>
+<p><code>target</code>:需要取值的目标对象,<code>propertyKey</code>:需要获取的值的键值,<code>receiver</code>:如果<code>target</code>对象中指定了<code>getter</code>，<code>receiver</code>则为<code>getter</code>调用时的<code>this</code>值。</p>
+<blockquote>
+<p>如果目标值类型不是 Object，则抛出一个 TypeError。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.set(obj, <span class="string">"prop"</span>, <span class="string">"value"</span>); <span class="comment">// true</span></span><br><span class="line">obj.prop; <span class="comment">// "value"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">"duck"</span>, <span class="string">"duck"</span>, <span class="string">"duck"</span>];</span><br><span class="line"><span class="built_in">Reflect</span>.set(arr, <span class="number">2</span>, <span class="string">"goose"</span>); <span class="comment">// true</span></span><br><span class="line">arr[<span class="number">2</span>]; <span class="comment">// "goose"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// It can truncate an array.</span></span><br><span class="line"><span class="built_in">Reflect</span>.set(arr, <span class="string">"length"</span>, <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">arr; <span class="comment">// ["duck"];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// With just one argument, propertyKey and value are "undefined".</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.set(obj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Reflect</span>.getOwnPropertyDescriptor(obj, <span class="string">"undefined"</span>);</span><br><span class="line"><span class="comment">// &#123; value: undefined, writable: true, enumerable: true, configurable: true &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Reflect.has()</li>
+</ol>
+<p>作用与 in 操作符 相同。</p>
+<p><code>target</code>目标对象. <code>propertyKey</code>:属性名，需要检查目标对象是否存在此属性。</p>
+<blockquote>
+<p>如果目标对象并非Object 类型，抛出TypeError。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj= &#123;</span><br><span class="line">  name: <span class="string">"chen"</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>老写法 <code>&#39;name&#39; in obj // true</code></p>
+<p>新写法<code>Reflect.has(obj, &#39;name&#39;) // true</code></p>
+<p>参考文章：</p>
+<p><a href="https://www.jianshu.com/p/4a5eca0536c3" target="_blank" rel="noopener">ES6之Reflect</a></p>
+<p><a href="https://segmentfault.com/a/1190000010471230" target="_blank" rel="noopener">《深入理解ES6》笔记——代理（Proxy）和反射（Reflection）API（12）</a></p>
+<p><a href="https://blog.csdn.net/u013707249/article/details/78842602" target="_blank" rel="noopener">ES6黑科技实践–proxy,reflect</a></p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>javascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。</p>
+<p>ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。它是一个更完善的Hash结构。</p>
+<ol>
+<li>键值对，键可以是对象。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line"><span class="keyword">const</span> objkey = &#123;<span class="attr">p1</span>: <span class="string">'v1'</span>&#125;</span><br><span class="line"></span><br><span class="line">map1.set(objkey, <span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(map1.get(objkey))</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>结果：<code>hello</code></p>
+<ol start="2">
+<li><p>Map可以接受数组作为参数，数组成员还是一个数组，其中有两个元素，一个表示键一个表示值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map2 = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="string">'name'</span>, <span class="string">'Aissen'</span>],</span><br><span class="line">  [<span class="string">'age'</span>, <span class="number">12</span>]</span><br><span class="line">])</span><br><span class="line"><span class="built_in">console</span>.log(map2.get(<span class="string">'name'</span>))</span><br><span class="line"><span class="built_in">console</span>.log(map2.get(<span class="string">'age'</span>))</span><br><span class="line"><span class="string">``</span><span class="string">`      </span></span><br><span class="line"><span class="string">结果：</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br><span class="line">Aissen</span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>size  获取map的大小。</p>
+</li>
+<li><p>get 获取键对应的值。</p>
+</li>
+<li><p>has 判断指定的键是否存在。</p>
+</li>
+<li><p>delete  删除键值对。</p>
+</li>
+<li><p>clear 删除map中的所有键值对</p>
+</li>
+<li><p>set 设置键值对，键可以是各种类型，包括undefined，function。</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map4 = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map4.set(<span class="string">'k1'</span>, <span class="number">6</span>)        <span class="comment">// 键是字符串</span></span><br><span class="line">map4.set(<span class="number">222</span>, <span class="string">'哈哈哈'</span>)     <span class="comment">// 键是数值</span></span><br><span class="line">map4.set(<span class="literal">undefined</span>, <span class="string">'gagaga'</span>)    <span class="comment">// 键是 undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fun = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="built_in">console</span>.log(<span class="string">'hello'</span>);&#125;</span><br><span class="line">map4.set(fun, <span class="string">'fun'</span>) <span class="comment">// 键是 function</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'map4 size: %s'</span>, map4.size)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'undefined value: %s'</span>, map4.get(<span class="literal">undefined</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fun value: %s'</span>, map4.get(fun))</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map4 size: <span class="number">4</span></span><br><span class="line"><span class="literal">undefined</span> value: gagaga</span><br><span class="line">fun value: fun</span><br></pre></td></tr></table></figure>
+
+<p>也可对set进行链式调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map4.set(<span class="string">'k2'</span>, <span class="number">2</span>).set(<span class="string">'k3'</span>, <span class="number">4</span>).set(<span class="string">'k4'</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'map4 size: %s'</span>, map4.size)</span><br></pre></td></tr></table></figure>
+
+<p>结果：<code>map4 size: 7</code></p>
+<p>参考文章<br><a href="https://www.cnblogs.com/kongxianghai/p/7309735.html" target="_blank" rel="noopener">ES6，新增数据结构Map的用法</a></p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/2019/11/ES6 Promise原生实现 、 Generator深入学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1688,164 +2029,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/2019/9/vue基础学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="淡退">
-      <meta itemprop="description" content="欢迎你的到来！">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565847089857&di=2bb546a711f57b819a4dbf3584c66392&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="淡退">
-    </span>
-      <header class="post-header">
-        
-          <i class="fa fa-thumb-tack"></i>
-          <font color=7D26CD>置顶</font>
-        
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2019/09/05/2019/9/vue基础学习笔记/" class="post-title-link" itemprop="url">vue基础学习笔记(sass、router、传参方式、keep-Alive  actived和deactived)</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-05 23:10:17" itemprop="dateCreated datePublished" datetime="2019-09-05T23:10:17+08:00">2019-09-05</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 18:18:47" itemprop="dateModified" datetime="2019-11-28T18:18:47+08:00">2019-11-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-            <div class="post-gallery-row">
-              <img src="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg" itemprop="contentUrl">
-            
-          
-
-          </div>
-        </div>
-          
-            <blockquote>
-<p> @ 指定到src目录<br>在vue项目中 import 导入文件的时候，@是webpack指定了的别名，默认是指向src目录下。</p>
-</blockquote>
-<h3 id="vue项目配置sass和less"><a href="#vue项目配置sass和less" class="headerlink" title="vue项目配置sass和less"></a>vue项目配置sass和less</h3><p>基于前面创建的工程(用脚手架2.0版本创建的</p>
-<ol>
-<li><p>安装sass的依赖包</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev sass-loader </span><br><span class="line"><span class="comment">//sass-loader依赖于node-sass </span></span><br><span class="line">npm install --save-dev node-sass</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在build文件夹下的webpack.base.conf.js的rules里面添加配置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">test</span>: <span class="regexp">/\.sass$/</span>, <span class="attr">loaders</span>: [‘style’, ‘css’, ‘sass’] &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后，在代码中的 style 标签中 加上<code>lang=&quot;less&quot;</code>属性即可<br><code>&lt;style type=&quot;text/less&quot; lang=”less&quot; rel=&quot;stylesheet/less&quot; scoped&gt;</code></p>
-</li>
-</ol>
-<h3 id="vue-配置router"><a href="#vue-配置router" class="headerlink" title="vue 配置router"></a>vue 配置router</h3><ol>
-<li><p>在路由配置页面引入路由组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>然后在该页面配置路由信息</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Tab <span class="keyword">from</span> <span class="string">'@/views/tab'</span></span><br><span class="line"><span class="keyword">import</span> Contact <span class="keyword">from</span> <span class="string">'@/views/contact'</span></span><br><span class="line"><span class="keyword">import</span> Setting <span class="keyword">from</span> <span class="string">'@/views/setting'</span></span><br><span class="line"><span class="keyword">import</span> Log <span class="keyword">from</span> <span class="string">'@/views/log'</span></span><br><span class="line"><span class="keyword">import</span> One <span class="keyword">from</span> <span class="string">'@/views/setting/children/one'</span></span><br><span class="line"><span class="keyword">import</span> Two <span class="keyword">from</span> <span class="string">'@/views/setting/children/two'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/tab'</span>,</span><br><span class="line">      component: Tab,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/contact'</span>, <span class="attr">component</span>: Contact</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/setting'</span>,</span><br><span class="line">          component: Setting,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/one'</span>, <span class="attr">component</span>: One, <span class="attr">name</span>: <span class="string">'setting1'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/two'</span>, <span class="attr">component</span>: Two, <span class="attr">name</span>: <span class="string">'setting2'</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/log'</span>,</span><br><span class="line">      name: <span class="string">'log'</span>,</span><br><span class="line">      component: Log</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在路由页面引入页面的两种方式的import和require</p>
-</li>
-</ol>
-<p>我们看到是用的require的方式写的路由，所以上面的import就注释掉了，这种写法的好处，不仅仅是简单，还有这样写是按需加载，访问此路由时才加载这个js，会避免进入首页时加载内容过多，因为import引入，当项目打包时路由里的所有component都会打包在一个js中，而用require会将你的component分别打包成不同的js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//上面是import的方式。</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> A = <span class="function"><span class="params">r</span> =&gt;</span> <span class="built_in">require</span>.ensure([],() =&gt; r(<span class="built_in">require</span>(<span class="string">'@/views/RouterTest/A.vue'</span>)),<span class="string">'A'</span>);</span><br><span class="line"><span class="keyword">const</span> B = <span class="function"><span class="params">r</span> =&gt;</span> <span class="built_in">require</span>.ensure([],() =&gt; r(<span class="built_in">require</span>(<span class="string">'@/views/RouterTest/B.vue'</span>)),<span class="string">'B'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">'/a'</span>,<span class="attr">name</span>:<span class="string">'A'</span>,<span class="attr">component</span>:A&#125;,</span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">'/b'</span>,<span class="attr">name</span>:<span class="string">'B'</span>,<span class="attr">component</span>:B&#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="vue-路由传参-params-与-query两种方式的区别"><a href="#vue-路由传参-params-与-query两种方式的区别" class="headerlink" title="vue 路由传参 params 与 query两种方式的区别"></a>vue 路由传参 params 与 query两种方式的区别</h4><p>query更加类似于我们ajax中get传参，params则类似于post，前者在浏览器地址栏中显示参数，后者则不显示<br>在页面通过 this.$router.query和this.$router.params获取对应的参数。</p>
-<p>由于params是类似于post传参 所以当页面刷新后，就不能在获取到路由中的参数了。</p>
-<p>比如:下面这个例子</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路由关系</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/tab'</span>,</span><br><span class="line">      component: Tab,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/contact'</span>, <span class="attr">component</span>: Contact</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'/tab/setting'</span>,</span><br><span class="line">          component: Setting,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/one'</span>, <span class="attr">component</span>: One, <span class="attr">name</span>: <span class="string">'setting1'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              path: <span class="string">'/tab/setting/two'</span>, <span class="attr">component</span>: Two, <span class="attr">name</span>: <span class="string">'setting2'</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/log'</span>,</span><br><span class="line">      name: <span class="string">'log'</span>,</span><br><span class="line">      component: Log</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>主要路由跳转页面</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//selete.js</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"setting"</span>&gt;</span><br><span class="line">    Setting</span><br><span class="line"></span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;button @click=<span class="string">"toOne"</span>&gt; to one&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    &lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    &lt;button @click="toTwo"&gt; to two&lt;/</span>button&gt;</span><br><span class="line">    &lt;keep-alive&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;<span class="regexp">/keep-alive&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: "setting",</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      toOne() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'setting1', query: &#123;</span></span><br><span class="line"><span class="regexp">            msg: 'aa'</span></span><br><span class="line"><span class="regexp">          &#125;</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      toTwo() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'setting2', params: &#123;</span></span><br><span class="line"><span class="regexp">            msg: 'bb'</span></span><br><span class="line"><span class="regexp">          &#125;</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>one.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"setting-one"</span>&gt;</span><br><span class="line">    Setting One</span><br><span class="line"></span><br><span class="line">    &lt;button @click=<span class="string">"toLog"</span>&gt;to Log&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: "one",</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">      return &#123;</span></span><br><span class="line"><span class="regexp">        msg1: ''</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    created() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one created')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    activated() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one activated')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    deactivated() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one deactivated')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    mounted() &#123;</span></span><br><span class="line"><span class="regexp">      const &#123; msg &#125; = this.$route.query</span></span><br><span class="line"><span class="regexp">      this.msg1 = msg</span></span><br><span class="line"><span class="regexp">      console.log('this.msg1 = ', this.msg1)</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      toLog() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'log'</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    destroyed() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('one destroyed')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>two.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"setting-two"</span>&gt;</span><br><span class="line">    Setting Two</span><br><span class="line"></span><br><span class="line">    &lt;button @click=<span class="string">"toLog"</span>&gt;to Log&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: "two",</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">      return &#123;</span></span><br><span class="line"><span class="regexp">        msg2: ''</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    created() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('two created')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    mounted() &#123;</span></span><br><span class="line"><span class="regexp">      const &#123; msg &#125; = this.$route.params</span></span><br><span class="line"><span class="regexp">      this.msg2 = msg</span></span><br><span class="line"><span class="regexp">      console.log('this.msg2 = ', this.msg2)</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      toLog() &#123;</span></span><br><span class="line"><span class="regexp">        this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">          name: 'log'</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    destroyed() &#123;</span></span><br><span class="line"><span class="regexp">      console.log('two destroyed')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在<code>select.js</code>中两个点击事件可以控制路由的切换，同时两个路由切换的传参方式也不同。当点击<code>toOne()</code>的时候，我们发现<code>ne.js</code>中的<code>onted</code>方法执行了，并且可以得到参数，对应的浏览器地址栏中也显示参数。当刷新页面的时候，还是可以得到参数。</p>
-<p>当点击<code>toTwo()</code>的时候，我们发现<code>wo.js</code>中的<code>monted</code>方法执行了，并且可以得到参数，对应的浏览器地址栏中没有显示参数。当刷新页面的时候，打印参数值为<code>undefined</code>。</p>
-<p>同时在路由进行切换的时候，我们发现都执行了<code>destoryed</code>方法，下次再切换到当前路由的时候<code>created()</code>又会在从新执行。所以这里存在一个小的问题，当我们第一次进入该页面的时候，发送了数据请求。当离开该页面，切换到下一个页面在返回回来的时候，又会从新发送数据请求。这样会造成请求次数的浪费，而且用户的体验也不好。所以采用在<code>&lt;router-view/&gt;</code>外面使用<code>keep-Alive</code>标签。</p>
-<h4 id="keep-Alive-actived和deactived的用法。"><a href="#keep-Alive-actived和deactived的用法。" class="headerlink" title="keep-Alive  actived和deactived的用法。"></a>keep-Alive  actived和deactived的用法。</h4><p>在上面的select.js 中我们通过将kee-Alice包裹起来，然后进行路由跳转的时候发现，切换路由的时候，组件的destoryed方法不再执行，同时当切换回去的时候，create也不再执行，这样就做到了页面不再渲染的效果。</p>
-<p>但是我们的需求就是每次进入页面的时候都要进行请求呢。  keep-Alive 提供了两个方法来代替销毁和创造两个函数，actived和deactived。前一个方法会在进入的页面的时候执行，而后者会在离开的时候执行</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1886,7 +2069,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1942,7 +2125,11 @@
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
