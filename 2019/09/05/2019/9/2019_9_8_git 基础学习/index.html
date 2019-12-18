@@ -56,7 +56,7 @@
 </script>
 
   <meta name="description" content="项目开发中git是非常重要的，它可以有效、高速地处理从很小到非常大的项目版本管理。">
-<meta name="keywords" content="git,Blog">
+<meta name="keywords" content="Blog,git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 基础学习">
 <meta property="og:url" content="http://yoursite.com/2019/09/05/2019/9/2019_9_8_git 基础学习/index.html">
@@ -64,7 +64,7 @@
 <meta property="og:description" content="项目开发中git是非常重要的，它可以有效、高速地处理从很小到非常大的项目版本管理。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s1680x1050c5/g5/M00/0C/00/ChMkJ13VHF6IdDshACMTOWET5fgAAvVdAFSmTgAIxNR699.jpg">
-<meta property="og:updated_time" content="2019-11-24T09:49:54.644Z">
+<meta property="og:updated_time" content="2019-12-18T07:22:53.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 基础学习">
 <meta name="twitter:description" content="项目开发中git是非常重要的，它可以有效、高速地处理从很小到非常大的项目版本管理。">
@@ -306,7 +306,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-24 17:49:54" itemprop="dateModified" datetime="2019-11-24T17:49:54+08:00">2019-11-24</time>
+                <time title="修改时间：2019-12-18 15:22:53" itemprop="dateModified" datetime="2019-12-18T15:22:53+08:00">2019-12-18</time>
               </span>
             
           
@@ -347,59 +347,168 @@
 <a id="more"></a>
 
 <h2 id="资料："><a href="#资料：" class="headerlink" title="资料："></a>资料：</h2><ul>
-<li><p>廖雪峰git教程： <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/896043488029600</a></p>
-</li>
-<li><p>git 笔记： <a href="https://github.com/Zhangguoliu/learn-git/blob/master/learngit-note.md" target="_blank" rel="noopener">https://github.com/Zhangguoliu/learn-git/blob/master/learngit-note.md</a></p>
-</li>
-<li><p>git 教程： <a href="https://juejin.im/entry/599e14bf51882524463106cf" target="_blank" rel="noopener">https://juejin.im/entry/599e14bf51882524463106cf</a></p>
-</li>
-<li><p>了解git flow 协作开发理念 : <a href="https://www.cnblogs.com/cnblogsfans/p/5075073.html" target="_blank" rel="noopener">https://www.cnblogs.com/cnblogsfans/p/5075073.html</a></p>
-</li>
+<li>廖雪峰git教程： <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/896043488029600</a></li>
+<li>git 笔记： <a href="https://github.com/Zhangguoliu/learn-git/blob/master/learngit-note.md" target="_blank" rel="noopener">https://github.com/Zhangguoliu/learn-git/blob/master/learngit-note.md</a></li>
+<li>git 教程： <a href="https://git-scm.com/book/zh/v2/Git-基础-总结" target="_blank" rel="noopener">https://git-scm.com/book/zh/v2/Git-基础-总结</a></li>
+<li>git 命令的理解： <a href="https://www.yiibai.com/git/git_fetch.html" target="_blank" rel="noopener">https://www.yiibai.com/git/git_fetch.html</a> </li>
+<li>git 在线学习： <a href="https://learngitbranching.js.org/?demo" target="_blank" rel="noopener">https://learngitbranching.js.org/?demo</a></li>
+<li>了解git flow 协作开发理念 : <a href="https://www.cnblogs.com/cnblogsfans/p/5075073.html" target="_blank" rel="noopener">https://www.cnblogs.com/cnblogsfans/p/5075073.html</a></li>
 </ul>
 <!-- - 了解hzero开发git规范： http://hzerodoc.saas.hand-china.com/zh/docs/development-specification/basic/branch-management/ -->
 
-<h2 id="项目开发常用命令"><a href="#项目开发常用命令" class="headerlink" title="项目开发常用命令"></a>项目开发常用命令</h2><p>本地主分支<br>origin/HEAD -&gt; origin/master  表示默认分支</p>
-<p>git show  可以查看提交详细信息</p>
-<p>git  status ：命令用于显示工作目录和暂存区的状态。使用此命令能看到那些修改被暂存到了, 哪些没有, 哪些文件没有被Git tracked到。git status不显示已经commit到项目历史中去的信息。 一般红色的没有被追踪到，绿色的是已经add后的， 意思就是被追踪了</p>
-<p>git add  将被文件放入暂存区 </p>
-<p>git config –local user.name ‘xxx’;</p>
-<p>git config –local user.email ‘xxx’;</p>
-<p>可以设置当前厂库的 用户和邮箱</p>
-<p>git config –global user.name ‘xxx’; </p>
-<p>git config –global user.email ‘xxx’;</p>
-<p>设置全局的仓库大的用户名 和邮箱</p>
+<h2 id="项目开发常用命令"><a href="#项目开发常用命令" class="headerlink" title="项目开发常用命令"></a>项目开发常用命令</h2><p>可以设置当前厂库的 用户和邮箱</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --local user.name <span class="string">'xxx'</span>;</span><br><span class="line"></span><br><span class="line">git config --local user.email <span class="string">'xxx'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>设置全局的仓库大的用户名和邮箱</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">'xxx'</span>; </span><br><span class="line"></span><br><span class="line">git config --global user.email <span class="string">'xxx'</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在github提交代码后如果贡献如果没有被记录，有可能就是你全局或者当前的git仓库的用户名和邮箱不是github的用户名和邮箱。</p>
+</blockquote>
 <p>如果这个命名存在也可以直接覆盖修改,还可以替换git config中已有的邮箱</p>
-<p>$  git config –global –replace-all user.email “输入你的邮箱”</p>
-<p>$  git config –global –replace-all user.name “输入你的用户名”</p>
-<p>git checkout -u origin/develop develop  在本地创建和远程分支对应的分支</p>
-<p>clone -b develop url 克隆指定分支下的内容</p>
-<p>一些git stash的操作 <a href="https://www.cnblogs.com/zndxall/archive/2018/09/04/9586088.html" target="_blank" rel="noopener">https://www.cnblogs.com/zndxall/archive/2018/09/04/9586088.html</a></p>
-<p>保存密码<br>git config credential.helper store</p>
-<h3 id="git-add-和-git-commit-做了什么"><a href="#git-add-和-git-commit-做了什么" class="headerlink" title="git add 和 git commit 做了什么"></a>git add 和 git commit 做了什么</h3><p>git add 将操作过的文件 提交到暂存（缓存）区，交给git进行管理。</p>
-<h3 id="项目开发中实际-git-操作顺序"><a href="#项目开发中实际-git-操作顺序" class="headerlink" title="项目开发中实际 git 操作顺序"></a>项目开发中实际 git 操作顺序</h3><p>提交的时候发现要拉取的 -&gt; 修改代码 -&gt; 先把自己的暂存(add 或者add 后加入stash) -&gt; 然后拉取 -&gt; 然后放出来 -&gt; 解决冲突 -&gt; 然后在提交。</p>
-<p>步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$  git config --global --replace-all user.email &quot;输入你的邮箱&quot;</span><br><span class="line">$  git config --global --replace-all user.name &quot;输入你的用户名&quot;</span><br></pre></td></tr></table></figure>
+
+<p>保存密码： 如果没有设置ssh 可以通过保存密码的方式来跳过输入密码这个步骤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper store</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>git stash: <a href="https://www.cnblogs.com/zndxall/archive/2018/09/04/9586088.html" target="_blank" rel="noopener">https://www.cnblogs.com/zndxall/archive/2018/09/04/9586088.html</a></p>
+</li>
+<li><p>本地主分支 : <code>origin/HEAD -&gt; origin/master</code>  表示默认分支</p>
+</li>
+<li><p>查看提交详细信息: <code>git show</code></p>
+</li>
+<li><p><code>git  status</code> ：命令用于显示工作目录和暂存区的状态。使用此命令能看到那些修改被暂存到了, 哪些没有, 哪些文件没有被<code>Git tracked</code>到。<code>git status</code>不显示已经<code>commit</code>到项目历史中去的信息。 一般红色的没有被追踪到，绿色的是已经add后的， 意思就是被追踪了</p>
+</li>
+<li><p>克隆指定分支下的内容: <code>clone -b brandName url</code></p>
+</li>
+<li><p>参看所有分支： <code>git branch -a 会列出当前库所有的分支（本地、远程）</code></p>
+</li>
+<li><p>切换分支： <code>git checkout branchName</code> 加上 -b 参数会新建并切换到该分支 <code>git checkout -b branchName</code></p>
+</li>
+<li><p>创建分支：<code>git brahch branchName</code></p>
+</li>
+<li><p>删除分支：<code>git branch --delete branchName</code></p>
+</li>
+<li><p>删除远程分支： <code>git push --delete origin branchName</code></p>
+</li>
+<li><p>删除那些远程仓库不存在的分支: <code>git remote prune origin</code></p>
+</li>
+<li><p>查看本地分支与远程分支的对应关系： <code>git remote show origin</code><br><img src="../../../images/InkedshowOrigin_LI.jpg" alt><br>通过这个命令可以看出 本地分支与远程分支的对应关系，是否与远程有对应关系。</p>
+</li>
+</ul>
+<p><code>Local branches configured for &#39;git pull&#39;</code>:表示本地分支 从哪个远程分支拉取</p>
+<p><code>Local branches configured for &#39;git pull&#39;</code>:表示本地分支 推送到哪个远程分支上去</p>
+<h3 id="git-常用命令理解"><a href="#git-常用命令理解" class="headerlink" title="git 常用命令理解"></a>git 常用命令理解</h3><h4 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h4><p>将某个远程主机的更新 <code>git fetch &lt;远程主机名&gt;</code> 若要更新所有分支，命令可以简写为： <code>git fetch</code></p>
+<p>上面命令将某个远程主机的更新，全部取回本地。默认情况下，git fetch取回所有分支的更新。如果只想取回特定分支的更新，可以指定分支名,如下所示: <code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code></p>
+<p>比如，取回origin主机的master分支： <code>git fetch origin master</code></p>
+<p>所取回的更新，在本地主机上要用<strong>远程主机名/分支名</strong>的形式读取。比如origin主机的master分支，就可以用<code>origin/master</code>读取。</p>
+<p>git branch命令的-r选项，可以用来查看远程分支，-a选项查看所有分支。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -r</span><br><span class="line">origin/master</span><br><span class="line"></span><br><span class="line">$ git branch -a</span><br><span class="line">* master</span><br><span class="line">  remotes/origin/master</span><br></pre></td></tr></table></figure>
+
+<p>上面命令表示，本地主机的当前分支是master，远程分支是<code>origin/master</code>。取回远程主机的更新以后，可以在它的基础上，使用<code>git checkout</code>命令创建一个新的分支。</p>
+<h4 id="常见分支操作-新建分支"><a href="#常见分支操作-新建分支" class="headerlink" title="常见分支操作 -新建分支"></a>常见分支操作 -新建分支</h4><h5 id="情况1-："><a href="#情况1-：" class="headerlink" title="情况1 ："></a>情况1 ：</h5><p>如果远程新建了一个分支，本地没有该分支，可以用 <code>git checkout --track origin/branch_name</code></p>
+<p>这时候本地会新建一个分支名叫<code>branch_name</code>，会自动跟踪（track）远程的同名分支branch_name（就可以在这个本地分支上推拉代码）</p>
+<p>用上面中方法，得到的分支名永远和远程的分支名一样，如果想新建一个本地分支不同名字，同时跟踪一个远程分支可以利用。<br><code>git checkout -b new_branch_name branch_name</code></p>
+<p>这条指令本来是根据一个<code>branch_name</code>分支分出一个本地分支<code>new_branch_name</code>，但是如果所根据的分支<code>branch_name</code>是一个远程分支名，那么本地的分支会自动的<code>track</code>远程分支。</p>
+<blockquote>
+<p>注意：一般用<code>git push --set-upstream origin branch_name</code>来在远程创建一个与本地<code>branch_name</code>同名的分支并跟踪；利用<code>git checkout --track origin/branch_name</code>来在本地创建一个与<code>branch_name</code>同名分支跟踪远程分支.</p>
+</blockquote>
+<p>当使用<code>git checkout -b new_branch_name origin/branch_name</code>当提交的时候会报这个错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fatal: The upstream branch of your current branch does not match</span><br><span class="line">the name of your current branch.  To push to the upstream branch</span><br><span class="line">on the remote, use</span><br><span class="line"></span><br><span class="line">    git push origin HEAD:master</span><br><span class="line"></span><br><span class="line">To push to the branch of the same name on the remote, use</span><br><span class="line"></span><br><span class="line">    git push origin dev-test</span><br></pre></td></tr></table></figure>
+
+<p>这是由于<code>Git</code>中<code>push.default</code>的设置的原因</p>
+<p><code>Git</code>中<code>push.default</code>可以指定在没有明确指定远程分支的情况下，默认push的远程分支，其取值可以是：</p>
+<ul>
+<li><p><code>nothing</code> - <code>push</code> 操作无效，除非显式指定远程分支（意思就是 push的时候 必须指定远程的分支）</p>
+</li>
+<li><p><code>current</code> - <code>push</code> 当前分支到远程<strong>同名</strong>分支，如果远程同名分支不存在则自动创建同名分支（<code>central 和 non-central workflows</code>都适用）</p>
+</li>
+<li><p><code>upstream</code> - <code>push</code> 当前分支到它的<code>upstream</code>分支上（通常用于<code>central workflow</code>）</p>
+</li>
+<li><p><code>simple</code> - <code>simple</code>和<code>upstream</code>是相似的（通常用于<code>central workflow</code>），只有一点不同，<code>simple</code>必须保证本地分支和它的远程<code>upstream</code>分支同名，否则会拒绝<code>push</code>操作</p>
+</li>
+<li><p><code>matching</code> - <code>push</code>所有本地和远程两端都存在的同名分支</p>
+</li>
+<li><p><code>central / non-central workflows</code> 是<code>Git</code>的两种常见工作流场景：</p>
 <ol>
-<li>git pull</li>
-<li>写你的代码 </li>
-<li>git add 将你的修改提交到缓存区</li>
-<li>git stash 将缓存区的代码进行缓存 </li>
-<li>git pull </li>
-<li>git stash apply stash@{0} 将缓冲区的代码放出来</li>
-<li>可能会产生冲突 将冲突处理好  </li>
-<li>然后git add  git commit </li>
-<li>git push branch 提交到指点的分支。</li>
+<li><code>central workflows</code> - 集中式工作流，一个分支的<code>push</code>和<code>pull</code>都是同一个远程仓库</li>
+<li><code>non-central workflows</code> - 非集中式工作流，一个分支的<code>push</code>和<code>pull</code>可能分别都有不同的远程仓库</li>
 </ol>
-<p>或者 </p>
-<ol>
-<li>git pull</li>
-<li>写你的代码 </li>
-<li>git add 将你的修改提交到缓存区</li>
-<li>git commit -m ‘message’</li>
-<li>git pull </li>
-<li>可能会产生冲突 将冲突处理好  </li>
-<li>然后git add  git commit </li>
-<li>git push branch 提交到指点的分支。</li>
-</ol>
+</li>
+</ul>
+<blockquote>
+<p>在Git 2.0之前，push.default的内建值被设为’matching’，2.0之后则被更改为了’simple’。</p>
+</blockquote>
+<p>通过<code>git remote show origin</code>可以看到每个分支的具体信息: (例如 <code>git checkout -b local origin/daily/dev</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Local branches configured for &apos;git pull&apos;:</span><br><span class="line">    local merges with remote /daily/dev</span><br><span class="line">    master       merges with remote master</span><br><span class="line"> Local ref configured for &apos;git push&apos;:</span><br><span class="line">   master pushes to master (up to date)</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>git checkout -b local origin/daily/dev</code>会自动创建远程分支<code>/daily/dev</code> 和本地分支local的跟踪关系。<br>其中<code>Local branches configured for &#39;git pull&#39;</code>:下的就是<code>upstream</code>跟踪分支。</p>
+<p>可以看出，远程分支<code>/daily/dev</code>和本地分支<code>local</code>建立了<code>git pull</code>的关系，但是没有建立<code>git push</code>的关系。此时如果强行push，不会成功，会出现如下提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fatal: The current branch new has no upstream branch.  </span><br><span class="line">To push the current branch and set the remote as upstream, use</span><br><span class="line">    git push --set-upstream origin develop</span><br></pre></td></tr></table></figure>
+
+<p>这种提示的处理方式下面会给出具体的处理方法。</p>
+<h5 id="情况2-："><a href="#情况2-：" class="headerlink" title="情况2 ："></a>情况2 ：</h5><p>本地新建分支，然后推送到远程，可以使用<code>git branch branch_name</code>或者<code>git checkout -b branch_name</code>(新建并切换到该分支) 新建一个本地分支,然后修改了代码 执行add 、commit、最后执行push操作 发现会发现报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># git push </span><br><span class="line">fatal: The current branch make-scripts-executable has no upstream branch.</span><br><span class="line">To push the current branch and set the remote as upstream, use</span><br><span class="line"></span><br><span class="line">    git push --set-upstream origin branch_name</span><br></pre></td></tr></table></figure>
+
+<p>这是因为Git不知道你要提交到哪个分支上去, 所以需要你指定提交的分支, 直接从本地检出的新分支，第一次push，远程仓库还没有与之建立tracing关系的分支，所以需要设置upstream，这个设置一次之后，后面再push的时候就不用设置了。</p>
+<p>如果不想这样写则需要指定提交到远程的分支： <code>git push origin branch_name</code>。</p>
+<p><code>git push origin branch_name</code>推向制定的分支，最强暴的方法。但是每次提交都要指定，太麻烦了（而且还容易出错）。所以需要与远程分支关联。</p>
+<p>所以使用<code>git push --set-upstream origin branch_name</code>远程分支关联。 这样就不用每次push的时候都指定分支了，都会提交到关联的远程分支上去。(branch_name是远程分支名)</p>
+<h4 id="常见分支操作-合并分支"><a href="#常见分支操作-合并分支" class="headerlink" title="常见分支操作 合并分支"></a>常见分支操作 合并分支</h4><p><code>git merge</code>命令用于将两个或两个以上的开发历史加入(合并)一起。 将 merge 后面的分支合并到当前分支。</p>
+<ul>
+<li><p>将分支dev合并到当前分支中，自动进行新的提交：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>合并分支 branch1 和 branch2 在当前分支的顶部，使它们合并：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge branch1 branch2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>合并branch1分支到当前分支，使用ours合并策略：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge -s ours branch1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将分支branch1合并到当前分支中，但不要自动进行新的提交：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-commit branch1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Git-checkout-文件名-、git-reset-HEAD-文件名-、git-reset-哈希值-的应用场景。"><a href="#Git-checkout-文件名-、git-reset-HEAD-文件名-、git-reset-哈希值-的应用场景。" class="headerlink" title="Git checkout [文件名]、git reset HEAD [文件名] 、git reset [哈希值] 的应用场景。"></a>Git checkout [文件名]、git reset HEAD [文件名] 、git reset [哈希值] 的应用场景。</h4><h5 id="git-reset-HEAD-文件名"><a href="#git-reset-HEAD-文件名" class="headerlink" title="git reset HEAD [文件名]"></a>git reset HEAD [文件名]</h5><p><img src="../../../images/gitAdd.png" alt></p>
+<p>通过git reset [文件名] 可以将暂存区的文件放出来 ， 但是我们的工作区的内容没有改变。只是相当于 对[文件名] 不执行 git add 操作 。 类似于后退操作。</p>
+<h4 id="git-checkout-文件名"><a href="#git-checkout-文件名" class="headerlink" title="git checkout [文件名]"></a>git checkout [文件名]</h4><p>工作区回退：如果比对后，发现这次改动不是我们想要的，那么我们可以回退到未修改之前，（在vsCode等编辑器里面，可以放弃修改）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout readme.txt</span><br><span class="line">git checkout .</span><br><span class="line">git checkout -- readme.txt  // 以防判断成分支</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../images/gitChange.png" alt></p>
+<p>下面这串数字是我们新加的, 通过git status 我们可以看到readme.md文件做了修改</p>
+<p><img src="../../../images/gitChange1.png" alt></p>
+<p>使用 git checkout [文件名] 可以将它变成修改前的是 ，意思就是放弃本次修改。 执行改命令后，发现添加的数字不见了<br>git status 显示文件没有修改。</p>
+<p><img src="../../../images/gitChange2.png" alt></p>
+<p>如果我们已经添加到了暂存区（意思已经执行 <code>git add</code> 操作了），如果要退回到修改前，我们应该怎么处理呢。</p>
+<p>直接通过<code>git checkout [文件名]</code>是不能将它回退到未修改的样子的。可以先采用<code>git reset HEAD [文件名]</code> 将它移除暂存区（意思就是回退在没有执行<code>git add</code> 的时候）, 然后通过<code>git checkout [文件名]</code> 将改文件退回到修改前。</p>
+<h4 id="git-reset-哈希值"><a href="#git-reset-哈希值" class="headerlink" title="git reset [哈希值]"></a>git reset [哈希值]</h4><p>上面的操作都是在暂存区 ，还没有使用git commit 提交到本地厂库 。如果已经提交到本地厂库了又要如何操作呢。</p>
+<p>将readme.md文件添加一段文字, 然后提交到本地的厂库。</p>
+<p><img src="../../../images/gitChange3.png" alt></p>
+<p>通过<code>git reflog</code>可以看到一共有两个版本  当前的版本是<code>HEAD -&gt; master</code></p>
+<p><img src="../../../images/gitReflog.png" alt></p>
+<p>然后 在修改文件<code>readme.md</code>，然后在提交到本地厂库。</p>
+<p><img src="../../../images/gitChange4.png" alt></p>
+<p>但是这个时候的需求是 <strong>回到没有添加第二次提交文字</strong>的时候，意思就是要回到上一个版本。</p>
+<p>可以通过使用 <code>git reset</code> 的命令来完成。基本的流程是执行：<code>git reset --mixed HEAD^</code>意思就是回退到上一个版本。</p>
+<p><img src="../../../images/gitReset1.png" alt></p>
+<p>可以发现命令成功了，是不是页面也变成了原来的样子呢，然后并没有改变。那这个命令具体做了什么呢?</p>
+<p>我们通过看<code>readme.md</code>和<code>git status</code>看可以看到</p>
+<p><img src="../../../images/gitChange5.png" alt><br><img src="../../../images/gitChange6.png" alt></p>
+<p>是将它回退没有执行<code>git add</code>命令之前了，相当于你修改了代码 但是没有提交的那个状态。然后可以通过<code>git checkout readme.md</code> 命令将它变回未修改的状态。</p>
+<p>但是如果我们要从现在没有添加那个文字的这个版本  变到添加了文字的版本 要如何操作呢。</p>
+<p>通过<code>git reflog</code> 可以看出当前的版本是<code>fd8258e</code></p>
+<p><img src="../../../images/gitReset2.png" alt></p>
+<p>我们使用 <code>git reset --hard HEAD^</code>, 发现这里readme.md文件直接被修改了。</p>
+<p><img src="../../../images/gitReset3.png" alt></p>
+<p> 同时版本并灭有从<code>fd8258e</code> 变到 <code>a5da32e</code> 而是变到了<code>df0abb9</code>，这里的原因是git的提交是一条时间线，在这条时间线上，<code>fd82582</code>的上一次提交就是<code>df0abb9</code></p>
+<p><img src="../../../images/gitReset4.png" alt></p>
+<p>如果要变成指定的版本应该采用命令： <code>git reset [哈希值]； --mixed 为默认参数</code>。</p>
+<p><img src="../../../images/gitReset5.png" alt></p>
+<p>显示readme.md被修改了，通过左右两边的比较可以发现。 左边相当于原文件，而右边相当于对原文件的修改。可以通过 <code>git checkout readme.md</code>放弃本次修改。</p>
+<p><img src="../../../images/githash.png" alt></p>
+<p>执行<code>git checkout readme.md</code>页面变成了修改之前的，同时也可以使用<code>git statsu</code>看出没有做出修改。</p>
 
     </div>
 
@@ -415,9 +524,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/git/" rel="tag"># git</a>
-            
               <a href="/tags/Blog/" rel="tag"># Blog</a>
+            
+              <a href="/tags/git/" rel="tag"># git</a>
             
           </div>
         
@@ -577,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资料："><span class="nav-number">1.</span> <span class="nav-text">资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目开发常用命令"><span class="nav-number">2.</span> <span class="nav-text">项目开发常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-add-和-git-commit-做了什么"><span class="nav-number">2.1.</span> <span class="nav-text">git add 和 git commit 做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发中实际-git-操作顺序"><span class="nav-number">2.2.</span> <span class="nav-text">项目开发中实际 git 操作顺序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资料："><span class="nav-number">1.</span> <span class="nav-text">资料：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目开发常用命令"><span class="nav-number">2.</span> <span class="nav-text">项目开发常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-常用命令理解"><span class="nav-number">2.1.</span> <span class="nav-text">git 常用命令理解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-fetch"><span class="nav-number">2.1.1.</span> <span class="nav-text">git fetch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见分支操作-新建分支"><span class="nav-number">2.1.2.</span> <span class="nav-text">常见分支操作 -新建分支</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#情况1-："><span class="nav-number">2.1.2.1.</span> <span class="nav-text">情况1 ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#情况2-："><span class="nav-number">2.1.2.2.</span> <span class="nav-text">情况2 ：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见分支操作-合并分支"><span class="nav-number">2.1.3.</span> <span class="nav-text">常见分支操作 合并分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-checkout-文件名-、git-reset-HEAD-文件名-、git-reset-哈希值-的应用场景。"><span class="nav-number">2.1.4.</span> <span class="nav-text">Git checkout [文件名]、git reset HEAD [文件名] 、git reset [哈希值] 的应用场景。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-reset-HEAD-文件名"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">git reset HEAD [文件名]</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-checkout-文件名"><span class="nav-number">2.1.5.</span> <span class="nav-text">git checkout [文件名]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-reset-哈希值"><span class="nav-number">2.1.6.</span> <span class="nav-text">git reset [哈希值]</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
