@@ -14,7 +14,7 @@ photos:
 
 1. 安装 Node
 2. 安装 Git
-3. 注册码云
+3. 注册码云或者github
 4. 安装 Hexo
 
 ```
@@ -294,6 +294,8 @@ top: 100
 ![](http://zwd.yyzheng.cn/hexo_manong_blog/8b095f7c592707bas.png)
 - 重启服务，效果图如下：
 ![](http://zwd.yyzheng.cn/hexo_manong_blog/51bfdaba5f3841a0s.png)
+
+### 在hexo博客中添加图片：
 
 参考文章：
 - [官方网站](https://hexo.io/zh-cn/docs/setup)
